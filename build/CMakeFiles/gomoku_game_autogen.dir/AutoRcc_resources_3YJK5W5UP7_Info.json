@@ -1,0 +1,22 @@
+{
+	"BUILD_DIR" : "D:/Code/game/build/gomoku_game_autogen",
+	"CMAKE_BINARY_DIR" : "D:/Code/game/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "D:/Code/game/build",
+	"CMAKE_CURRENT_SOURCE_DIR" : "D:/Code/game",
+	"CMAKE_SOURCE_DIR" : "D:/Code/game",
+	"CROSS_CONFIG" : false,
+	"GENERATOR" : "Ninja",
+	"INCLUDE_DIR" : "D:/Code/game/build/gomoku_game_autogen/include",
+	"INPUTS" : [ "D:/Code/game/resources/icons/app_icon.svg" ],
+	"LOCK_FILE" : "D:/Code/game/build/CMakeFiles/gomoku_game_autogen.dir/AutoRcc_resources_3YJK5W5UP7_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "resources" ],
+	"OUTPUT_CHECKSUM" : "3YJK5W5UP7",
+	"OUTPUT_NAME" : "qrc_resources.cpp",
+	"RCC_EXECUTABLE" : "D:/Anaconda/Library/bin/rcc.exe",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "D:/Code/game/build/CMakeFiles/gomoku_game_autogen.dir/AutoRcc_resources_3YJK5W5UP7_Used.txt",
+	"SOURCE" : "D:/Code/game/resources/resources.qrc",
+	"USE_BETTER_GRAPH" : false,
+	"VERBOSITY" : 0
+}

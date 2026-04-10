@@ -1,0 +1,50 @@
+[
+{
+  "directory": "D:/Code/game/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\C__~1.EXE -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -isystem D:/Anaconda/Library/include/qt -isystem D:/Anaconda/Library/include/qt/QtCore -isystem D:/Anaconda/Library/./mkspecs/win32-msvc -isystem D:/Anaconda/Library/include/qt/QtGui -isystem D:/Anaconda/Library/include/qt/QtANGLE -isystem D:/Anaconda/Library/include/qt/QtWidgets -g -std=gnu++11 -o CMakeFiles\\gomoku_game.dir\\gomoku_game_autogen\\mocs_compilation.cpp.obj -c D:\\Code\\game\\build\\gomoku_game_autogen\\mocs_compilation.cpp",
+  "file": "D:\\Code\\game\\build\\gomoku_game_autogen\\mocs_compilation.cpp",
+  "output": "CMakeFiles\\gomoku_game.dir\\gomoku_game_autogen\\mocs_compilation.cpp.obj"
+},
+{
+  "directory": "D:/Code/game/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\C__~1.EXE -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -isystem D:/Anaconda/Library/include/qt -isystem D:/Anaconda/Library/include/qt/QtCore -isystem D:/Anaconda/Library/./mkspecs/win32-msvc -isystem D:/Anaconda/Library/include/qt/QtGui -isystem D:/Anaconda/Library/include/qt/QtANGLE -isystem D:/Anaconda/Library/include/qt/QtWidgets -g -std=gnu++11 -o CMakeFiles\\gomoku_game.dir\\src\\main.cpp.obj -c D:\\Code\\game\\src\\main.cpp",
+  "file": "D:\\Code\\game\\src\\main.cpp",
+  "output": "CMakeFiles\\gomoku_game.dir\\src\\main.cpp.obj"
+},
+{
+  "directory": "D:/Code/game/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\C__~1.EXE -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -isystem D:/Anaconda/Library/include/qt -isystem D:/Anaconda/Library/include/qt/QtCore -isystem D:/Anaconda/Library/./mkspecs/win32-msvc -isystem D:/Anaconda/Library/include/qt/QtGui -isystem D:/Anaconda/Library/include/qt/QtANGLE -isystem D:/Anaconda/Library/include/qt/QtWidgets -g -std=gnu++11 -o CMakeFiles\\gomoku_game.dir\\src\\game\\gomoku_board.cpp.obj -c D:\\Code\\game\\src\\game\\gomoku_board.cpp",
+  "file": "D:\\Code\\game\\src\\game\\gomoku_board.cpp",
+  "output": "CMakeFiles\\gomoku_game.dir\\src\\game\\gomoku_board.cpp.obj"
+},
+{
+  "directory": "D:/Code/game/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\C__~1.EXE -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -isystem D:/Anaconda/Library/include/qt -isystem D:/Anaconda/Library/include/qt/QtCore -isystem D:/Anaconda/Library/./mkspecs/win32-msvc -isystem D:/Anaconda/Library/include/qt/QtGui -isystem D:/Anaconda/Library/include/qt/QtANGLE -isystem D:/Anaconda/Library/include/qt/QtWidgets -g -std=gnu++11 -o CMakeFiles\\gomoku_game.dir\\src\\game\\gomoku_game.cpp.obj -c D:\\Code\\game\\src\\game\\gomoku_game.cpp",
+  "file": "D:\\Code\\game\\src\\game\\gomoku_game.cpp",
+  "output": "CMakeFiles\\gomoku_game.dir\\src\\game\\gomoku_game.cpp.obj"
+},
+{
+  "directory": "D:/Code/game/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\C__~1.EXE -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -isystem D:/Anaconda/Library/include/qt -isystem D:/Anaconda/Library/include/qt/QtCore -isystem D:/Anaconda/Library/./mkspecs/win32-msvc -isystem D:/Anaconda/Library/include/qt/QtGui -isystem D:/Anaconda/Library/include/qt/QtANGLE -isystem D:/Anaconda/Library/include/qt/QtWidgets -g -std=gnu++11 -o CMakeFiles\\gomoku_game.dir\\src\\game\\gomoku_player.cpp.obj -c D:\\Code\\game\\src\\game\\gomoku_player.cpp",
+  "file": "D:\\Code\\game\\src\\game\\gomoku_player.cpp",
+  "output": "CMakeFiles\\gomoku_game.dir\\src\\game\\gomoku_player.cpp.obj"
+},
+{
+  "directory": "D:/Code/game/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\C__~1.EXE -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -isystem D:/Anaconda/Library/include/qt -isystem D:/Anaconda/Library/include/qt/QtCore -isystem D:/Anaconda/Library/./mkspecs/win32-msvc -isystem D:/Anaconda/Library/include/qt/QtGui -isystem D:/Anaconda/Library/include/qt/QtANGLE -isystem D:/Anaconda/Library/include/qt/QtWidgets -g -std=gnu++11 -o CMakeFiles\\gomoku_game.dir\\src\\ui\\mainwindow.cpp.obj -c D:\\Code\\game\\src\\ui\\mainwindow.cpp",
+  "file": "D:\\Code\\game\\src\\ui\\mainwindow.cpp",
+  "output": "CMakeFiles\\gomoku_game.dir\\src\\ui\\mainwindow.cpp.obj"
+},
+{
+  "directory": "D:/Code/game/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\C__~1.EXE -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -isystem D:/Anaconda/Library/include/qt -isystem D:/Anaconda/Library/include/qt/QtCore -isystem D:/Anaconda/Library/./mkspecs/win32-msvc -isystem D:/Anaconda/Library/include/qt/QtGui -isystem D:/Anaconda/Library/include/qt/QtANGLE -isystem D:/Anaconda/Library/include/qt/QtWidgets -g -std=gnu++11 -o CMakeFiles\\gomoku_game.dir\\src\\ui\\gomoku_widget.cpp.obj -c D:\\Code\\game\\src\\ui\\gomoku_widget.cpp",
+  "file": "D:\\Code\\game\\src\\ui\\gomoku_widget.cpp",
+  "output": "CMakeFiles\\gomoku_game.dir\\src\\ui\\gomoku_widget.cpp.obj"
+},
+{
+  "directory": "D:/Code/game/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\C__~1.EXE -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -isystem D:/Anaconda/Library/include/qt -isystem D:/Anaconda/Library/include/qt/QtCore -isystem D:/Anaconda/Library/./mkspecs/win32-msvc -isystem D:/Anaconda/Library/include/qt/QtGui -isystem D:/Anaconda/Library/include/qt/QtANGLE -isystem D:/Anaconda/Library/include/qt/QtWidgets -g -std=gnu++11 -o CMakeFiles\\gomoku_game.dir\\gomoku_game_autogen\\3YJK5W5UP7\\qrc_resources.cpp.obj -c D:\\Code\\game\\build\\gomoku_game_autogen\\3YJK5W5UP7\\qrc_resources.cpp",
+  "file": "D:\\Code\\game\\build\\gomoku_game_autogen\\3YJK5W5UP7\\qrc_resources.cpp",
+  "output": "CMakeFiles\\gomoku_game.dir\\gomoku_game_autogen\\3YJK5W5UP7\\qrc_resources.cpp.obj"
+}
+]
