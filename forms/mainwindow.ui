@@ -16,9 +16,6 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QMenuBar" name="menuBar"/>
-    </item>
-    <item>
      <widget class="GomokuWidget" name="gomokuWidget">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -27,9 +24,6 @@
        </sizepolicy>
       </property>
      </widget>
-    </item>
-    <item>
-     <widget class="QStatusBar" name="statusBar"/>
     </item>
    </layout>
   </widget>

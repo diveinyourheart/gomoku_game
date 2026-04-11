@@ -15,7 +15,6 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QStatusBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include "gomoku_widget.h"
@@ -30,10 +29,8 @@ public:
     QAction *action_About;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
-    QMenuBar *menuBar;
     GomokuWidget *gomokuWidget;
-    QStatusBar *statusBar;
-    QMenuBar *menuBar1;
+    QMenuBar *menuBar;
     QMenu *menu_Game;
     QMenu *menu_Help;
 
@@ -52,11 +49,6 @@ public:
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        menuBar = new QMenuBar(centralWidget);
-        menuBar->setObjectName(QString::fromUtf8("menuBar"));
-
-        verticalLayout->addWidget(menuBar);
-
         gomokuWidget = new GomokuWidget(centralWidget);
         gomokuWidget->setObjectName(QString::fromUtf8("gomokuWidget"));
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -67,23 +59,18 @@ public:
 
         verticalLayout->addWidget(gomokuWidget);
 
-        statusBar = new QStatusBar(centralWidget);
-        statusBar->setObjectName(QString::fromUtf8("statusBar"));
-
-        verticalLayout->addWidget(statusBar);
-
         MainWindow->setCentralWidget(centralWidget);
-        menuBar1 = new QMenuBar(MainWindow);
-        menuBar1->setObjectName(QString::fromUtf8("menuBar1"));
-        menuBar1->setGeometry(QRect(0, 0, 800, 22));
-        menu_Game = new QMenu(menuBar1);
+        menuBar = new QMenuBar(MainWindow);
+        menuBar->setObjectName(QString::fromUtf8("menuBar"));
+        menuBar->setGeometry(QRect(0, 0, 800, 22));
+        menu_Game = new QMenu(menuBar);
         menu_Game->setObjectName(QString::fromUtf8("menu_Game"));
-        menu_Help = new QMenu(menuBar1);
+        menu_Help = new QMenu(menuBar);
         menu_Help->setObjectName(QString::fromUtf8("menu_Help"));
-        MainWindow->setMenuBar(menuBar1);
+        MainWindow->setMenuBar(menuBar);
 
-        menuBar1->addAction(menu_Game->menuAction());
-        menuBar1->addAction(menu_Help->menuAction());
+        menuBar->addAction(menu_Game->menuAction());
+        menuBar->addAction(menu_Help->menuAction());
         menu_Game->addAction(action_New_Game);
         menu_Game->addAction(action_Exit);
         menu_Help->addAction(action_About);
