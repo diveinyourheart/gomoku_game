@@ -32,7 +32,7 @@ private:
     GomokuBoard board;
     GomokuPlayer* players[2];
     int currentPlayerIndex;
-    int gameStatus;
+    int gameStatus = GAME_NOT_STARTED;
     int winner;
     int moveCount; // 回合数
 

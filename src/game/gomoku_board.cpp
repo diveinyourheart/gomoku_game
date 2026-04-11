@@ -1,4 +1,6 @@
 #include "gomoku_board.h"
+#include <QDebug>
+#include <QString>
 
 GomokuBoard::GomokuBoard()
 {
@@ -81,4 +83,15 @@ int GomokuBoard::checkDirection(int x, int y, int dx, int dy, int player) const
     }
 
     return count;
+}
+
+void GomokuBoard::printBoard() const
+{
+    for (int i = 0; i < BOARD_SIZE; ++i) {
+        QString line;
+        for (int j = 0; j < BOARD_SIZE; ++j) {
+            line += QString::number(board[i][j]) + " ";
+        }
+        qDebug().noquote() << line;
+    }
 }

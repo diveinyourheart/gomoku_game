@@ -17,6 +17,7 @@ public:
     int getStone(int x, int y) const;
     bool isFull() const;
     bool checkWin(int x, int y, int player) const;
+    void printBoard() const;
 
 private:
     int board[BOARD_SIZE][BOARD_SIZE];

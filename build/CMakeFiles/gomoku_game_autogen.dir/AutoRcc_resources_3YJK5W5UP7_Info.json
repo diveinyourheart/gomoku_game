@@ -13,7 +13,7 @@
 	"OPTIONS" : [ "-name", "resources" ],
 	"OUTPUT_CHECKSUM" : "3YJK5W5UP7",
 	"OUTPUT_NAME" : "qrc_resources.cpp",
-	"RCC_EXECUTABLE" : "D:/Anaconda/Library/bin/rcc.exe",
+	"RCC_EXECUTABLE" : "D:/Qt/5.15.2/mingw81_64/bin/rcc.exe",
 	"RCC_LIST_OPTIONS" : [ "--list" ],
 	"SETTINGS_FILE" : "D:/Code/game/build/CMakeFiles/gomoku_game_autogen.dir/AutoRcc_resources_3YJK5W5UP7_Used.txt",
 	"SOURCE" : "D:/Code/game/resources/resources.qrc",

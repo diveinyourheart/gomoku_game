@@ -1,0 +1,17 @@
+# ninja log v6
+4	660	7976015830649445	gomoku_game_autogen/timestamp	7a9d3875d94f4ee
+4	660	7976015830649445	gomoku_game_autogen/mocs_compilation.cpp	7a9d3875d94f4ee
+4	660	7976015830649445	D:/Code/game/build/gomoku_game_autogen/timestamp	7a9d3875d94f4ee
+4	660	7976015830649445	D:/Code/game/build/gomoku_game_autogen/mocs_compilation.cpp	7a9d3875d94f4ee
+670	725	7976015831972424	gomoku_game_autogen/3YJK5W5UP7/qrc_resources.cpp	fb0c95e0d09884c
+670	725	7976015831972424	D:/Code/game/build/gomoku_game_autogen/3YJK5W5UP7/qrc_resources.cpp	fb0c95e0d09884c
+740	833	7976015832193433	CMakeFiles/gomoku_game.dir/src/game/gomoku_player.cpp.obj	7509db0660be8cf0
+761	859	7976015832413458	CMakeFiles/gomoku_game.dir/gomoku_game_autogen/3YJK5W5UP7/qrc_resources.cpp.obj	afbf4679f8a33851
+735	2214	7976015832153465	CMakeFiles/gomoku_game.dir/src/game/gomoku_game.cpp.obj	2f013b211a5c4f62
+732	2444	7976015832117993	CMakeFiles/gomoku_game.dir/src/game/gomoku_board.cpp.obj	797240a1373e5ab7
+725	2635	7976015832047999	CMakeFiles/gomoku_game.dir/gomoku_game_autogen/mocs_compilation.cpp.obj	c3be9e1f4705af47
+728	2747	7976015832077991	CMakeFiles/gomoku_game.dir/src/main.cpp.obj	58bbf204e1acfd14
+744	2846	7976015832243432	CMakeFiles/gomoku_game.dir/src/ui/mainwindow.cpp.obj	e354fdbe308ac118
+756	2969	7976015832363461	CMakeFiles/gomoku_game.dir/src/ui/board_widget.cpp.obj	35bead17fbff0d5c
+751	2973	7976015832313449	CMakeFiles/gomoku_game.dir/src/ui/gomoku_widget.cpp.obj	1999a38669462636
+2974	3333	7976015854533579	gomoku_game.exe	65679f84b93192cf

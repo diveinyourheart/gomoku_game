@@ -2,8 +2,13 @@ cmake_minimum_required(VERSION 3.10)
 
 project(gomoku_game)
 
-# 设置 Qt 路径
-set(CMAKE_PREFIX_PATH "D:/Anaconda/Library")
+# # 设置 Qt 路径
+# set(CMAKE_PREFIX_PATH "D:/Qt/5.15.2/mingw81_64/lib/cmake/Qt5")
+
+# # 输出 CMAKE_PREFIX_PATH 的值
+# message(STATUS "CMAKE_PREFIX_PATH: ${CMAKE_PREFIX_PATH}")
+
+message(STATUS "Qt5_DIR: ${Qt5_DIR}")
 
 # 查找 Qt 包
 find_package(Qt5 REQUIRED COMPONENTS Core Gui Widgets)
@@ -35,6 +40,7 @@ set(SOURCES
     src/game/gomoku_player.cpp
     src/ui/mainwindow.cpp
     src/ui/gomoku_widget.cpp
+    src/ui/board_widget.cpp
 )
 
 # 头文件
@@ -44,6 +50,8 @@ set(HEADERS
     src/game/gomoku_player.h
     src/ui/mainwindow.h
     src/ui/gomoku_widget.h
+    src/ui/board_widget.h
+    src/ui/gomoku_constants.h
 )
 
 # UI 文件

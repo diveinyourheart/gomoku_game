@@ -3,7 +3,9 @@
 
 #include <QWidget>
 #include <QLabel>
+#include <memory>
 class GomokuGame;
+class BoardWidget;
 
 class GomokuWidget : public QWidget
 {
@@ -15,18 +17,14 @@ public:
 
 protected:
     void paintEvent(QPaintEvent *event) override;
-    void mousePressEvent(QMouseEvent *event) override;
+    // void mousePressEvent(QMouseEvent *event) override;
 
 private:
-    static const int BOARD_SIZE = 15;
-    static const int CELL_SIZE = 30;
-    static const int MARGIN = 20;
 
-    GomokuGame *game; // 游戏逻辑对象
+    std::shared_ptr<GomokuGame> game; // 游戏逻辑对象
     QLabel *statusLabel; // 显示当前状态的标签
+    BoardWidget *boardWidget; // 棋盘小部件
 
-    void drawBoard(QPainter &painter);
-    void drawStones(QPainter &painter);
     void updateStatus(); // 更新状态显示
 
 private slots:
