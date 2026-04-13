@@ -3,6 +3,8 @@
 
 #include <string>
 #include <memory>
+#include <vector>
+#include <utility>
 #include "gomoku_board.h"
 
 struct Move;
@@ -18,6 +20,9 @@ public:
 
     // 发送棋盘状态给DeepSeek，获取最佳落子
     Move getBestMove(const GomokuBoard* board, int currentPlayer);
+    
+    // 发送候选点给DeepSeek，获取评分
+    std::vector<std::pair<std::pair<int, int>, int>> getMoveScores(const GomokuBoard* board, int currentPlayer, const std::vector<std::pair<int, int>>& candidates, int topK);
 
 private:
     std::string api_key;
@@ -31,6 +36,9 @@ private:
     
     // 解析响应，提取坐标
     Move parseResponse(const std::string& response);
+    
+    // 解析响应，提取评分
+    std::vector<std::pair<std::pair<int, int>, int>> parseScoreResponse(const std::string& response);
 };
 
 #endif // NETWORK_MANAGER_H

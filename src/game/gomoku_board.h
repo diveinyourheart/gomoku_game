@@ -1,6 +1,9 @@
 #ifndef GOMOKU_BOARD_H
 #define GOMOKU_BOARD_H
 
+#include <vector>
+#include <utility>
+
 class GomokuBoard
 {
 public:
@@ -20,6 +23,7 @@ public:
     bool checkWin(int x, int y, int player) const;
     void printBoard() const;
     bool generateRandomBoard(int maxStones);
+    std::vector<std::pair<int, int>> getValidMoves() const;
 
 private:
     int board[BOARD_SIZE][BOARD_SIZE];

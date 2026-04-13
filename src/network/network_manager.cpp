@@ -1,4 +1,4 @@
-﻿#include "network_manager.h"
+#include "network_manager.h"
 #include "httplib.h"
 #include <iostream>
 #include <string>
@@ -202,4 +202,69 @@ Move NetworkManager::getBestMove(const GomokuBoard* board, int currentPlayer) {
     
     std::string response = sendRequest(system_content, user_content);
     return parseResponse(response);
+}
+
+std::vector<std::pair<std::pair<int, int>, int>> NetworkManager::getMoveScores(const GomokuBoard* board, int currentPlayer, const std::vector<std::pair<int, int>>& candidates, int topK) {
+    std::string board_str = boardToString(board);
+    std::string player_str = (currentPlayer == GomokuBoard::BLACK) ? "X" : "O";
+    
+    // 构建候选点JSON串
+    nlohmann::json candidates_json = nlohmann::json::array();
+    for (const auto& candidate : candidates) {
+        nlohmann::json move;
+        move["x"] = candidate.first;
+        move["y"] = candidate.second;
+        candidates_json.push_back(move);
+    }
+    std::string candidates_str = candidates_json.dump();
+    
+    // 系统指令
+    std::string system_content =
+        "你是一个五子棋AI。\n"
+        "请从候选落子点中选择最优的点并打分（0-100）。\n"
+        "\n"
+        "【严格规则】\n"
+        "1. 只能从提供的候选列表中选择坐标\n"
+        "2. 输出必须是合法 JSON 数组\n"
+        "3. 不能包含任何额外文字或解释\n"
+        "4. 不要使用 markdown 或 ```\n"
+        "5. 每个元素格式必须为 {\"x\":int,\"y\":int,\"score\":int}\n"
+        "6. 必须返回且只返回 " + std::to_string(topK) + " 个元素\n"
+        "7. 结果必须按 score 从高到低排序\n"
+        "8. 如果候选点数量少于 " + std::to_string(topK) + "，则返回所有候选点\n"
+        "9. 返回的坐标不能重复\n"
+        "10. score 必须是 0 到 100 的整数\n"
+        "11. x 和 y 必须是整数，且必须与候选列表完全一致\n"
+        "12. 分数必须体现差异，不能全部相同\n";
+
+    // 用户指令
+    std::string user_content =
+        "棋盘：\n" + board_str + "\n\n"
+        "候选点（JSON）：\n" + candidates_str + "\n\n"
+        "请返回结果。";
+    
+    std::string response = sendRequest(system_content, user_content);
+    return parseScoreResponse(response);
+}
+
+std::vector<std::pair<std::pair<int, int>, int>> NetworkManager::parseScoreResponse(const std::string& response) {
+    std::vector<std::pair<std::pair<int, int>, int>> scores;
+    
+    try {
+        auto json = nlohmann::json::parse(response);
+        std::string content = json["choices"][0]["message"]["content"];
+        
+        // 解析JSON数组
+        auto score_array = nlohmann::json::parse(content);
+        for (const auto& item : score_array) {
+            int x = item["x"];
+            int y = item["y"];
+            int score = item["score"];
+            scores.push_back(std::make_pair(std::make_pair(x, y), score));
+        }
+    } catch (const std::exception& e) {
+        std::cerr << "JSON 解析失败: " << e.what() << std::endl;
+    }
+    
+    return scores;
 }

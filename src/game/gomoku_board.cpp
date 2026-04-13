@@ -8,6 +8,7 @@
 #endif
 
 #include <random>
+#include <vector>
 
 GomokuBoard::GomokuBoard()
 {
@@ -205,4 +206,17 @@ int GomokuBoard::countDirection(int x, int y, int dx, int dy, int player) const
     }
 
     return count;
+}
+
+std::vector<std::pair<int, int>> GomokuBoard::getValidMoves() const
+{
+    std::vector<std::pair<int, int>> validMoves;
+    for (int i = 0; i < BOARD_SIZE; ++i) {
+        for (int j = 0; j < BOARD_SIZE; ++j) {
+            if (board[i][j] == EMPTY) {
+                validMoves.push_back(std::make_pair(i, j));
+            }
+        }
+    }
+    return validMoves;
 }
