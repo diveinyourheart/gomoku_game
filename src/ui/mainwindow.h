@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "gomoku_constants.h"
 
 namespace Ui {
 class MainWindow;
@@ -18,9 +19,13 @@ public:
 private slots:
     void onNewGame();
     void onAbout();
+    void onBtnNormalModeClicked();
+    void onBtnAiModeClicked();
+    void onActionBackToMenuTriggered();
 
 private:
     Ui::MainWindow *ui;
+    GomokuConst::GameMode currentGameMode; // 当前游戏模式
 };
 
 #endif // MAINWINDOW_H

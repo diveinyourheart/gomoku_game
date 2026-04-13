@@ -1,21 +1,20 @@
 #ifndef GOMOKU_PLAYER_H
 #define GOMOKU_PLAYER_H
 
-class GomokuPlayer
+#include "player.h"
+
+class GomokuPlayer : public Player
 {
 public:
-    static const int HUMAN = 0;
-    static const int AI = 1;
-
-    GomokuPlayer(int type, int color);
+    GomokuPlayer(int color);
     ~GomokuPlayer();
 
-    int getType() const;
-    int getColor() const;
+    void addMove(int x, int y) override;
+    Move undoMove();
+    bool hasMoves() const;
 
 private:
-    int type;
-    int color;
+    std::stack<Move> moveHistory;
 };
 
 #endif // GOMOKU_PLAYER_H

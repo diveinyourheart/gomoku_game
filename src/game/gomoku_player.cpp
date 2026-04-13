@@ -1,7 +1,6 @@
 #include "gomoku_player.h"
 
-GomokuPlayer::GomokuPlayer(int type, int color)
-    : type(type), color(color)
+GomokuPlayer::GomokuPlayer(int color) : Player(Player::HUMAN, color)
 {
 }
 
@@ -9,12 +8,22 @@ GomokuPlayer::~GomokuPlayer()
 {
 }
 
-int GomokuPlayer::getType() const
+void GomokuPlayer::addMove(int x, int y)
 {
-    return type;
+    moveHistory.push(Move(x, y));
 }
 
-int GomokuPlayer::getColor() const
+Move GomokuPlayer::undoMove()
 {
-    return color;
+    if (!moveHistory.empty()) {
+        Move move = moveHistory.top();
+        moveHistory.pop();
+        return move;
+    }
+    return Move(-1, -1);
+}
+
+bool GomokuPlayer::hasMoves() const
+{
+    return !moveHistory.empty();
 }

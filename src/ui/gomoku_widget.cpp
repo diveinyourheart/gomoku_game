@@ -1,23 +1,18 @@
 #include "gomoku_widget.h"
+#include "game.h"
 #include "gomoku_game.h"
+#include "ai_game.h"
 #include "gomoku_board.h"
 #include <QPainter>
 #include <QMouseEvent>
 #include <QMessageBox>
 #include <QVBoxLayout>
-#include "gomoku_constants.h"
 #include "board_widget.h"
-using namespace GomokuConst;
+#include <QDebug>
+
 
 GomokuWidget::GomokuWidget(QWidget *parent) : QWidget(parent)
 {
-    // 初始化游戏对象
-    game = std::make_shared<GomokuGame>();
-
-    // 连接信号与槽
-    connect(game.get(), &GomokuGame::gameOver, this, &GomokuWidget::onGameOver);
-    connect(game.get(), &GomokuGame::moveMade, this, &GomokuWidget::onMoveMade);
-
     // 棋盘宽度
     int boardWidth = MARGIN * 2 + CELL_SIZE * (BOARD_SIZE - 1);
 
@@ -26,8 +21,8 @@ GomokuWidget::GomokuWidget(QWidget *parent) : QWidget(parent)
     statusLabel->setFixedWidth(boardWidth);
     statusLabel->setAlignment(Qt::AlignCenter);
 
-    // 创建棋盘小部件
-    boardWidget = new BoardWidget(game, this);
+    // 创建棋盘小部件（暂时传入nullptr，后续在startNewGame中设置）
+    boardWidget = new BoardWidget(nullptr, this);
 
     // 创建垂直布局
     QVBoxLayout *layout = new QVBoxLayout(this);
@@ -65,10 +60,14 @@ void GomokuWidget::onMoveMade()
 
 void GomokuWidget::updateStatus()
 {
-    int currentPlayerIndex = game->getCurrentPlayer();
-    int moveCount = game->getMoveCount();
-    QString playerColor = currentPlayerIndex == 0 ? "黑方" : "白方";
-    statusLabel->setText(QString("当前回合：%1 (回合 %2)").arg(playerColor).arg(moveCount));
+    if (game) {
+        int currentPlayerIndex = game->getCurrentPlayer();
+        int moveCount = game->getMoveCount();
+        QString playerColor = currentPlayerIndex == 0 ? "黑方" : "白方";
+        statusLabel->setText(QString("当前回合：%1 (回合 %2)").arg(playerColor).arg(moveCount));
+    } else {
+        statusLabel->setText("游戏未开始");
+    }
 }
 
 void GomokuWidget::onGameOver(int winner)
@@ -81,12 +80,50 @@ void GomokuWidget::onGameOver(int winner)
     }
 }
 
-void GomokuWidget::startNewGame()
+void GomokuWidget::startNewGame(GomokuConst::GameMode mode)
 {
-    // 调用游戏对象的方法重置游戏
+    // 断开旧的信号槽连接
+    if (game) {
+        disconnect(game.get(), &Game::gameOver, this, &GomokuWidget::onGameOver);
+        disconnect(game.get(), &Game::moveMade, this, &GomokuWidget::onMoveMade);
+    }
+
+    // 根据游戏模式创建不同的游戏对象
+    switch (mode) {
+    case GomokuConst::GameMode::Normal:
+        // 普通对战模式
+        qDebug() << "普通对战模式";
+        game = std::make_shared<GomokuGame>();
+        break;
+    case GomokuConst::GameMode::AI:
+        // AI对战模式
+        qDebug() << "AI对战模式";
+        game = std::make_shared<AIGame>(); // 创建AI游戏对象
+        break;
+    default:
+        qDebug() << "未知游戏模式";
+        game = std::make_shared<GomokuGame>();
+        break;
+    }
+
+    // 连接信号与槽
+    connect(game.get(), &Game::gameOver, this, &GomokuWidget::onGameOver);
+    connect(game.get(), &Game::moveMade, this, &GomokuWidget::onMoveMade);
+
+    // 更新棋盘小部件的游戏对象
+    boardWidget->setGame(game);
+
+    // 重置游戏
     game->startNewGame();
 
     // 更新状态并重绘棋盘
     updateStatus();
     update();
+}
+
+void GomokuWidget::onUndoButtonClicked()
+{
+    if (game) {
+        game->undoMove();
+    }
 }
