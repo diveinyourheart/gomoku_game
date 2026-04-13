@@ -1,5 +1,7 @@
 #include "board_widget.h"
 #include "game.h"
+#include "gomoku_game.h"
+#include "ai_game.h"
 #include "gomoku_board.h"
 #include <QPainter>
 #include <QMouseEvent>
@@ -26,22 +28,24 @@ void BoardWidget::mousePressEvent(QMouseEvent* event)
 {
     if (!game) return;
     
-    qDebug() << "clicked board" << event->x() << "," << event->y();
+    if(game->canPlayerMove()){
+        qDebug() << "clicked board" << event->x() << "," << event->y();
     
-    int x = (event->x() - MARGIN + CELL_SIZE / 2) / CELL_SIZE;
-    int y = (event->y() - MARGIN + CELL_SIZE / 2) / CELL_SIZE;
-    qDebug() << "The coordinates of this move are:" << x << "," << y;
+        int x = (event->x() - MARGIN + CELL_SIZE / 2) / CELL_SIZE;
+        int y = (event->y() - MARGIN + CELL_SIZE / 2) / CELL_SIZE;
+        qDebug() << "The coordinates of this move are:" << x << "," << y;
 
-    if (x >= 0 && x < BOARD_SIZE && y >= 0 && y < BOARD_SIZE) {
-        if (game->makeMove(x, y)) {
-            update();
+        if (x >= 0 && x < BOARD_SIZE && y >= 0 && y < BOARD_SIZE) {
+            if (game->makeMove(x, y)) {
+                update();
+            }
         }
-    }
 
-    qDebug() << "The current game status is:" << game->getGameStatus();
-    qDebug() << "The current move count is:" << game->getMoveCount();
-    qDebug() << "The current player is:" << game->getCurrentPlayer();
-    game->getBoard()->printBoard();
+        qDebug() << "The current game status is:" << game->getGameStatus();
+        qDebug() << "The current move count is:" << game->getMoveCount();
+        qDebug() << "The current player is:" << game->getCurrentPlayer();
+        game->getBoard()->printBoard();
+    }
 }
 
 void BoardWidget::drawBoard(QPainter& painter){

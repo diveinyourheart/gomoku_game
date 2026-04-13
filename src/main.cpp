@@ -1,14 +1,15 @@
+#ifdef _WIN32
+#include <windows.h>
+#endif
 #include <QApplication>
 #include "mainwindow.h"
-#include "env_util.h"
-
-const std::string API_KEY = []() {
-    EnvUtil::getInstance().loadEnvFile("../../.env");
-    return EnvUtil::getInstance().getEnv("DEEPSEEK_API_KEY", "");
-}();
 
 int main(int argc, char *argv[])
 {
+    #ifdef _WIN32
+    // 设置控制台输出为 UTF-8
+    SetConsoleOutputCP(CP_UTF8);
+    #endif
     QApplication a(argc, argv);
     MainWindow w;
     w.show();

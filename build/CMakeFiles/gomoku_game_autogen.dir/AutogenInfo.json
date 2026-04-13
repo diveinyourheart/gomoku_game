@@ -238,6 +238,7 @@
 	"SETTINGS_FILE" : "D:/Code/game/build/CMakeFiles/gomoku_game_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "D:/Code/game/src/config/config.cpp", "MU", null ],
 		[ "D:/Code/game/src/game/ai_game.cpp", "MU", null ],
 		[ "D:/Code/game/src/game/ai_player.cpp", "MU", null ],
 		[ "D:/Code/game/src/game/game.cpp", "MU", null ],

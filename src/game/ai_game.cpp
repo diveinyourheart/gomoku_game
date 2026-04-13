@@ -1,10 +1,20 @@
 #include "ai_game.h"
 
-AIGame::AIGame(QObject *parent) : Game(parent), humanPlayer(nullptr), aiPlayer(nullptr), aiPlayerIndex(1), humanPlayerIndex(0)
+AIGame::AIGame(bool humanPlaysBlack, QObject *parent) : Game(parent), humanPlayer(nullptr), aiPlayer(nullptr), humanPlaysBlack(humanPlaysBlack)
 {
-    // 人类玩家作为黑方（索引0），AI作为白方（索引1）
-    humanPlayer = new GomokuPlayer(GomokuBoard::BLACK);
-    aiPlayer = new AIPlayer(GomokuBoard::WHITE);
+    if (humanPlaysBlack) {
+        // 人类玩家作为黑方（索引0），AI作为白方（索引1）
+        humanPlayerIndex = 0;
+        aiPlayerIndex = 1;
+        humanPlayer = new GomokuPlayer(GomokuBoard::BLACK);
+        aiPlayer = new AIPlayer(GomokuBoard::WHITE);
+    } else {
+        // 人类玩家作为白方（索引1），AI作为黑方（索引0）
+        humanPlayerIndex = 1;
+        aiPlayerIndex = 0;
+        humanPlayer = new GomokuPlayer(GomokuBoard::WHITE);
+        aiPlayer = new AIPlayer(GomokuBoard::BLACK);
+    }
 }
 
 AIGame::~AIGame()
@@ -20,6 +30,13 @@ void AIGame::startNewGame()
     gameStatus = GAME_IN_PROGRESS;
     winner = 0;
     moveCount = 0;
+    
+    // 如果AI执黑子（人类执白子），则AI先下
+    if (aiPlayerIndex == 0) {
+        // AI自动落子
+        Move aiMove = aiPlayer->aiDecision(&board);
+        makeMove(aiMove.x, aiMove.y);
+    }
 }
 
 bool AIGame::makeMove(int x, int y)
@@ -81,37 +98,8 @@ bool AIGame::makeMove(int x, int y)
 
 bool AIGame::undoMove()
 {
-    if (gameStatus != GAME_IN_PROGRESS || moveCount == 0) {
-        return false;
-    }
-    
-    // 回退到上一个玩家
-    int prevPlayerIndex = (currentPlayerIndex + 1) % 2;
-    
-    // 只有人类玩家可以悔棋
-    if (prevPlayerIndex == humanPlayerIndex) {
-        if (!humanPlayer->hasMoves()) {
-            return false;
-        }
-        
-        // 获取上一步落子
-        Move move = humanPlayer->undoMove();
-        if (move.x == -1 || move.y == -1) {
-            return false;
-        }
-        
-        // 从棋盘上移除棋子
-        board.removeStone(move.x, move.y);
-        
-        // 更新游戏状态
-        moveCount--;
-        currentPlayerIndex = prevPlayerIndex;
-        
-        // 发送信号通知UI更新
-        emit moveMade();
-        
-        return true;
-    }
+    // AI模式悔棋较为复杂，需要考虑AI的落子记录和人类玩家的落子记录
+    // 这里简单地返回false，实际实现需要根据AI的落子记录和人类玩家的落子记录来判断
     return false;
 }
 
@@ -138,4 +126,19 @@ GomokuBoard* AIGame::getBoard()
 int AIGame::getMoveCount() const
 {
     return moveCount;
+}
+
+int AIGame::getHumanPlayerIndex() const
+{
+    return humanPlayerIndex;
+}
+
+int AIGame::getAiPlayerIndex() const
+{
+    return aiPlayerIndex;
+}
+
+bool AIGame::canPlayerMove() const
+{
+    return gameStatus == GAME_IN_PROGRESS && currentPlayerIndex == humanPlayerIndex;
 }

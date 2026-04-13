@@ -5,6 +5,10 @@
 #include <sstream>
 #include "player.h"
 #include <nlohmann/json.hpp> 
+#ifdef QT_CORE_LIB
+#include <QDebug>
+#include <QString>
+#endif
 
 // 使用cpp-httplib库实现HTTP客户端
 std::string HttpClient::post(const std::string& url, const std::string& data, const std::string& api_key) {
@@ -47,6 +51,15 @@ std::string HttpClient::post(const std::string& url, const std::string& data, co
         std::cout << "status: " << res->status << std::endl;
         std::cout << "body: " << res->body << std::endl;
     }
+
+    #ifdef QT_CORE_LIB
+    if (res) {
+        qDebug() << "[HTTP Response] Status:" << res->status;
+        qDebug() << "[HTTP Response] Body:" << QString::fromStdString(res->body);
+    } else {
+        qDebug() << "[HTTP Response] Error: Response is null (Connection failed)";
+    }
+    #endif
 
     if (res && res->status == 200) {
         return res->body;
@@ -178,7 +191,8 @@ Move NetworkManager::getBestMove(const GomokuBoard* board, int currentPlayer) {
         "【严格规则】：\n"
         "1. 只输出坐标，格式为 x,y（例如：7,7）。\n"
         "2. 严禁输出任何文字说明、思考过程或多余字符。\n"
-        "3. 即使棋局结束或有其他情况，也只准输出坐标。";
+        "3. 即使棋局结束或有其他情况，也只准输出坐标。\n"
+        "4. 输出坐标时，坐标对应的棋盘位置必须不能是'X'或'O'，必须是'.'。\n";
 
     // 2. 用户指令：提供数据并再次强调
     std::string user_content = 

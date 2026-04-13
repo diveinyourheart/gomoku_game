@@ -85,6 +85,12 @@
 },
 {
   "directory": "D:/Code/game/build",
+  "command": "D:\\mingw64\\bin\\g++.exe -DCPPHTTPLIB_OPENSSL_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -ID:/Code/game/src/network -ID:/Code/game/src/util -ID:/Code/game/src/config -isystem D:/Qt/5.15.2/mingw81_64/include -isystem D:/Qt/5.15.2/mingw81_64/include/QtCore -isystem D:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++ -isystem D:/Qt/5.15.2/mingw81_64/include/QtGui -isystem D:/Qt/5.15.2/mingw81_64/include/QtANGLE -isystem D:/Qt/5.15.2/mingw81_64/include/QtWidgets -isystem D:/openSSL/ucrt64/include -g -std=c++17 -finput-charset=UTF-8 -o CMakeFiles\\gomoku_game.dir\\src\\config\\config.cpp.obj -c D:\\Code\\game\\src\\config\\config.cpp",
+  "file": "D:\\Code\\game\\src\\config\\config.cpp",
+  "output": "CMakeFiles\\gomoku_game.dir\\src\\config\\config.cpp.obj"
+},
+{
+  "directory": "D:/Code/game/build",
   "command": "D:\\mingw64\\bin\\g++.exe -DCPPHTTPLIB_OPENSSL_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -ID:/Code/game/src/network -ID:/Code/game/src/util -ID:/Code/game/src/config -isystem D:/Qt/5.15.2/mingw81_64/include -isystem D:/Qt/5.15.2/mingw81_64/include/QtCore -isystem D:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++ -isystem D:/Qt/5.15.2/mingw81_64/include/QtGui -isystem D:/Qt/5.15.2/mingw81_64/include/QtANGLE -isystem D:/Qt/5.15.2/mingw81_64/include/QtWidgets -isystem D:/openSSL/ucrt64/include -g -std=c++17 -finput-charset=UTF-8 -o CMakeFiles\\gomoku_game.dir\\gomoku_game_autogen\\3YJK5W5UP7\\qrc_resources.cpp.obj -c D:\\Code\\game\\build\\gomoku_game_autogen\\3YJK5W5UP7\\qrc_resources.cpp",
   "file": "D:\\Code\\game\\build\\gomoku_game_autogen\\3YJK5W5UP7\\qrc_resources.cpp",
   "output": "CMakeFiles\\gomoku_game.dir\\gomoku_game_autogen\\3YJK5W5UP7\\qrc_resources.cpp.obj"

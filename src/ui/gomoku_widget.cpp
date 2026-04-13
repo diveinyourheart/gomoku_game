@@ -17,7 +17,7 @@ GomokuWidget::GomokuWidget(QWidget *parent) : QWidget(parent)
     int boardWidth = MARGIN * 2 + CELL_SIZE * (BOARD_SIZE - 1);
 
     // 创建状态标签
-    statusLabel = new QLabel("当前回合：黑方 (回合 0)", this);
+    statusLabel = new QLabel("当前回合：黑方，总回合数：0", this);
     statusLabel->setFixedWidth(boardWidth);
     statusLabel->setAlignment(Qt::AlignCenter);
 
@@ -64,7 +64,12 @@ void GomokuWidget::updateStatus()
         int currentPlayerIndex = game->getCurrentPlayer();
         int moveCount = game->getMoveCount();
         QString playerColor = currentPlayerIndex == 0 ? "黑方" : "白方";
-        statusLabel->setText(QString("当前回合：%1 (回合 %2)").arg(playerColor).arg(moveCount));
+        auto ai_game = dynamic_cast<AIGame*>(game.get());
+        QString playerType = "";
+        if(ai_game != nullptr){
+            playerType = ( ai_game->getCurrentPlayer() == ai_game -> getAiPlayerIndex() ? "AI" : "你" );
+        }
+        statusLabel->setText(QString("当前回合：%1（%2），总回合数：%3").arg(playerColor).arg(playerType).arg(moveCount));
     } else {
         statusLabel->setText("游戏未开始");
     }
@@ -96,10 +101,34 @@ void GomokuWidget::startNewGame(GomokuConst::GameMode mode)
         game = std::make_shared<GomokuGame>();
         break;
     case GomokuConst::GameMode::AI:
-        // AI对战模式
-        qDebug() << "AI对战模式";
-        game = std::make_shared<AIGame>(); // 创建AI游戏对象
-        break;
+        {
+            // AI对战模式
+            qDebug() << "AI对战模式";
+            // 弹出选择颜色的对话框
+            QMessageBox msgBox;
+            msgBox.setWindowTitle("选择先后手");
+            msgBox.setText("您是否选择执黑子（先手）？");
+            msgBox.setInformativeText("提示：黑子先手，白子后手。");
+
+            // 使用 Yes 和 No 作为标准按钮
+            msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+
+            // 强行修改按钮上显示的文本
+            msgBox.setButtonText(QMessageBox::Yes, "是，我执黑子");
+            msgBox.setButtonText(QMessageBox::No, "否，我执白子");
+
+            // 设置默认焦点在“是”上
+            msgBox.setDefaultButton(QMessageBox::Yes);
+
+            // 执行并获取结果
+            int result = msgBox.exec();
+
+            // 逻辑判断：点击了 Yes 即为先手（黑子）
+            bool humanPlaysBlack = (result == QMessageBox::Yes);
+            
+            game = std::make_shared<AIGame>(humanPlaysBlack); // 创建AI游戏对象并传入用户选择
+            break;
+        }
     default:
         qDebug() << "未知游戏模式";
         game = std::make_shared<GomokuGame>();
@@ -123,7 +152,7 @@ void GomokuWidget::startNewGame(GomokuConst::GameMode mode)
 
 void GomokuWidget::onUndoButtonClicked()
 {
-    if (game) {
+    if (game && dynamic_cast<GomokuGame*>(game.get()) != nullptr) {
         game->undoMove();
     }
 }

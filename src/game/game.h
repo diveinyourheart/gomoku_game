@@ -25,6 +25,7 @@ public:
     virtual int getWinner() const = 0;
     virtual GomokuBoard* getBoard() = 0;
     virtual int getMoveCount() const = 0;
+    virtual bool canPlayerMove() const;
 
 signals:
     void gameOver(int winner); // 0: 平局, 1: 黑方胜, 2: 白方胜

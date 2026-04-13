@@ -60,6 +60,7 @@ set(SOURCES
     src/ui/gomoku_widget.cpp
     src/ui/board_widget.cpp
     src/util/env_util.cpp
+    src/config/config.cpp
 )
 
 # 头文件

@@ -10,7 +10,7 @@ class AIGame : public Game
     Q_OBJECT
 
 public:
-    AIGame(QObject *parent = nullptr);
+    AIGame(bool humanPlaysBlack = true, QObject *parent = nullptr);
     ~AIGame();
 
     void startNewGame() override;
@@ -21,12 +21,16 @@ public:
     int getWinner() const override;
     GomokuBoard* getBoard() override;
     int getMoveCount() const override;
+    int getHumanPlayerIndex() const;
+    int getAiPlayerIndex() const;
+    bool canPlayerMove() const override;
 
 private:
     GomokuPlayer* humanPlayer; // 人类玩家
     AIPlayer* aiPlayer; // AI玩家
     int aiPlayerIndex; // AI玩家的索引（0或1）
     int humanPlayerIndex; // 人类玩家的索引（0或1）
+    bool humanPlaysBlack; // 人类玩家是否执黑子
 };
 
 #endif // AI_GAME_H
