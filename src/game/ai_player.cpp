@@ -3,10 +3,9 @@
 #include "config.h"
 #include <vector>
 #include <algorithm>
-#include <random>
 #include <utility>
 #include <set>
-#include <cmath>
+#include <climits>
 
 AIPlayer::AIPlayer(int color) 
     : Player(Player::AI, color)
@@ -122,24 +121,130 @@ Move AIPlayer::aiDecision(const GomokuBoard* board)
         }
     }
     
-    // 兜底策略：从本地评分最高的候选点中选择
-    if (!localScores.empty()) {
-        return Move(localScores[0].first.first, localScores[0].first.second);
-    }
-    
-    // 如果本地评分也没有结果，随机选择一个
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dist(0, validMoves.size() - 1);
-    int randomIndex = dist(gen);
-    return Move(validMoves[randomIndex].first, validMoves[randomIndex].second);
+    // 兜底策略：使用本地决策方法
+    return localDecision(board, 3);
 }
 
 
 
 int AIPlayer::evaluateBoard(const GomokuBoard* board)
 {
-    // 简单的棋盘评估函数
-    // 后续可以实现更复杂的评估逻辑
-    return 0;
+    // 简单的棋盘评估函数，使用GomokuBoard的evaluateMove方法
+    int score = 0;
+    int aiColor = getColor();
+    int opponentColor = (aiColor == GomokuBoard::BLACK) ? GomokuBoard::WHITE : GomokuBoard::BLACK;
+    
+    // 对所有有效位置进行评估，取最高分数
+    std::vector<std::pair<int, int>> validMoves = board->getValidMoves();
+    for (const auto& move : validMoves) {
+        int x = move.first;
+        int y = move.second;
+        int moveScore = board->evaluateMove(x, y, aiColor);
+        if (moveScore > score) {
+            score = moveScore;
+        }
+    }
+    
+    return score;
+}
+
+std::vector<std::pair<int, int>> AIPlayer::generateMoves(const GomokuBoard* board)
+{
+    // 生成所有有效移动
+    return board->getValidMoves();
+}
+
+int AIPlayer::minimax(GomokuBoard* board, int depth, int alpha, int beta, bool maximizingPlayer, int aiPlayer, int opponentPlayer)
+{
+    if (depth == 0) {
+        return evaluateBoard(board);
+    }
+
+    std::vector<std::pair<int, int>> moves = generateMoves(board);
+
+    if (maximizingPlayer) {
+        int maxEval = INT_MIN;
+        for (const auto& move : moves) {
+            int x = move.first;
+            int y = move.second;
+            
+            // 模拟落子
+            board->placeStone(x, y, aiPlayer);
+            int eval = minimax(board, depth - 1, alpha, beta, false, aiPlayer, opponentPlayer);
+            // 撤销落子
+            board->removeStone(x, y);
+            
+            maxEval = std::max(maxEval, eval);
+            alpha = std::max(alpha, eval);
+            if (beta <= alpha) {
+                break; // 剪枝
+            }
+        }
+        return maxEval;
+    } else {
+        int minEval = INT_MAX;
+        for (const auto& move : moves) {
+            int x = move.first;
+            int y = move.second;
+            
+            // 模拟落子
+            board->placeStone(x, y, opponentPlayer);
+            int eval = minimax(board, depth - 1, alpha, beta, true, aiPlayer, opponentPlayer);
+            // 撤销落子
+            board->removeStone(x, y);
+            
+            minEval = std::min(minEval, eval);
+            beta = std::min(beta, eval);
+            if (beta <= alpha) {
+                break; // 剪枝
+            }
+        }
+        return minEval;
+    }
+}
+
+Move AIPlayer::localDecision(const GomokuBoard* board, int depth)
+{
+    // 获取所有有效移动
+    std::vector<std::pair<int, int>> moves = generateMoves(board);
+    if (moves.empty()) {
+        return Move(-1, -1); // 棋盘已满
+    }
+    
+    int aiColor = getColor();
+    int opponentColor = (aiColor == GomokuBoard::BLACK) ? GomokuBoard::WHITE : GomokuBoard::BLACK;
+    
+    int bestScore = INT_MIN;
+    std::pair<int, int> bestMove = moves[0];
+    
+    // 复制棋盘以进行模拟
+    GomokuBoard* tempBoard = new GomokuBoard();
+    // 复制原始棋盘状态
+    for (int i = 0; i < GomokuBoard::BOARD_SIZE; ++i) {
+        for (int j = 0; j < GomokuBoard::BOARD_SIZE; ++j) {
+            int stone = board->getStone(i, j);
+            if (stone != GomokuBoard::EMPTY) {
+                tempBoard->placeStone(i, j, stone);
+            }
+        }
+    }
+    
+    for (const auto& move : moves) {
+        int x = move.first;
+        int y = move.second;
+        
+        // 模拟落子
+        tempBoard->placeStone(x, y, aiColor);
+        int score = minimax(tempBoard, depth - 1, INT_MIN, INT_MAX, false, aiColor, opponentColor);
+        // 撤销落子
+        tempBoard->removeStone(x, y);
+        
+        if (score > bestScore) {
+            bestScore = score;
+            bestMove = move;
+        }
+    }
+    
+    delete tempBoard;
+    return Move(bestMove.first, bestMove.second);
 }

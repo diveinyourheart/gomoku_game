@@ -178,7 +178,7 @@ Move NetworkManager::parseResponse(const std::string& response) {
     }
     
     // 解析失败时的降级策略
-    return Move(7, 7);  // 返回中心点而不是随机点
+    return Move(-1, -1);  // 返回特殊值表示解析失败
 }
 
 Move NetworkManager::getBestMove(const GomokuBoard* board, int currentPlayer) {
@@ -223,6 +223,11 @@ std::vector<std::pair<std::pair<int, int>, int>> NetworkManager::getMoveScores(c
     std::string system_content =
         "你是一个五子棋AI。\n"
         "请从候选落子点中选择最优的点并重新打分（0-100）。\n"
+        "\n"
+        "【评分构成】\n"
+        "- 进攻分：评估当前落子对自己进攻的帮助\n"
+        "- 防守分：评估当前落子对阻止对手进攻的帮助\n"
+        "- 总评分 = 进攻分 × 1.0 + 防守分 × 1.2\n"
         "\n"
         "【评分规则参考】\n"
         "- 连五（FIVE）: 1000000\n"
