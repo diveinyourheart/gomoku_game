@@ -22,7 +22,7 @@ public:
     Move getBestMove(const GomokuBoard* board, int currentPlayer);
     
     // 发送候选点给DeepSeek，获取评分
-    std::vector<std::pair<std::pair<int, int>, int>> getMoveScores(const GomokuBoard* board, int currentPlayer, const std::vector<std::pair<int, int>>& candidates, int topK);
+    std::vector<std::pair<std::pair<int, int>, int>> getMoveScores(const GomokuBoard* board, int currentPlayer, const std::vector<std::pair<std::pair<int, int>, int>>& candidatesWithScores, int topK);
 
 private:
     std::string api_key;

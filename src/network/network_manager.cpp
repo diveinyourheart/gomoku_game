@@ -204,16 +204,17 @@ Move NetworkManager::getBestMove(const GomokuBoard* board, int currentPlayer) {
     return parseResponse(response);
 }
 
-std::vector<std::pair<std::pair<int, int>, int>> NetworkManager::getMoveScores(const GomokuBoard* board, int currentPlayer, const std::vector<std::pair<int, int>>& candidates, int topK) {
+std::vector<std::pair<std::pair<int, int>, int>> NetworkManager::getMoveScores(const GomokuBoard* board, int currentPlayer, const std::vector<std::pair<std::pair<int, int>, int>>& candidatesWithScores, int topK) {
     std::string board_str = boardToString(board);
     std::string player_str = (currentPlayer == GomokuBoard::BLACK) ? "X" : "O";
     
-    // 构建候选点JSON串
+    // 构建候选点JSON串（包含评估分数）
     nlohmann::json candidates_json = nlohmann::json::array();
-    for (const auto& candidate : candidates) {
+    for (const auto& candidate : candidatesWithScores) {
         nlohmann::json move;
-        move["x"] = candidate.first;
-        move["y"] = candidate.second;
+        move["x"] = candidate.first.first;
+        move["y"] = candidate.first.second;
+        move["score"] = candidate.second;
         candidates_json.push_back(move);
     }
     std::string candidates_str = candidates_json.dump();
@@ -221,7 +222,16 @@ std::vector<std::pair<std::pair<int, int>, int>> NetworkManager::getMoveScores(c
     // 系统指令
     std::string system_content =
         "你是一个五子棋AI。\n"
-        "请从候选落子点中选择最优的点并打分（0-100）。\n"
+        "请从候选落子点中选择最优的点并重新打分（0-100）。\n"
+        "\n"
+        "【评分规则参考】\n"
+        "- 连五（FIVE）: 1000000\n"
+        "- 活四（OPEN_FOUR）: 100000\n"
+        "- 冲四（FOUR）: 10000\n"
+        "- 活三（OPEN_THREE）: 1000\n"
+        "- 眠三（THREE）: 200\n"
+        "- 双活二（TWO）: 50\n"
+        "- 单活二（ONE）: 10\n"
         "\n"
         "【严格规则】\n"
         "1. 只能从提供的候选列表中选择坐标\n"
@@ -235,13 +245,14 @@ std::vector<std::pair<std::pair<int, int>, int>> NetworkManager::getMoveScores(c
         "9. 返回的坐标不能重复\n"
         "10. score 必须是 0 到 100 的整数\n"
         "11. x 和 y 必须是整数，且必须与候选列表完全一致\n"
-        "12. 分数必须体现差异，不能全部相同\n";
+        "12. 分数必须体现差异，不能全部相同\n"
+        "13. 请参考提供的评估分数，但可以根据你的判断进行调整\n";
 
     // 用户指令
     std::string user_content =
         "棋盘：\n" + board_str + "\n\n"
-        "候选点（JSON）：\n" + candidates_str + "\n\n"
-        "请返回结果。";
+        "候选点（包含评估分数，JSON）：\n" + candidates_str + "\n\n"
+        "请返回重新评估后的结果。";
     
     std::string response = sendRequest(system_content, user_content);
     return parseScoreResponse(response);

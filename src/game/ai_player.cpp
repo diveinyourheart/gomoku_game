@@ -6,6 +6,7 @@
 #include <random>
 #include <utility>
 #include <set>
+#include <cmath>
 
 AIPlayer::AIPlayer(int color) 
     : Player(Player::AI, color)
@@ -31,13 +32,47 @@ Move AIPlayer::aiDecision(const GomokuBoard* board)
     
     // 定义topK值
     int topK = 5;
+    int localTopK = 15; // 本地筛选的候选点数量
+    
+    // 对所有有效位置进行本地评分
+    std::vector<std::pair<std::pair<int, int>, int>> localScores;
+    for (const auto& move : validMoves) {
+        int x = move.first;
+        int y = move.second;
+        int score = board->evaluateMove(x, y, getColor());
+        if (score > 0) {
+            localScores.emplace_back(move, score);
+        }
+    }
+    
+    // 按照本地评分排序
+    std::sort(localScores.begin(), localScores.end(), 
+              [](const auto& a, const auto& b) { 
+                  return a.second > b.second; 
+              });
+    
+    // 选择前localTopK个分数最高的候选点
+    std::vector<std::pair<std::pair<int, int>, int>> candidatesWithScores;
+    int candidateCount = std::min(localTopK, static_cast<int>(localScores.size()));
+    for (int i = 0; i < candidateCount; ++i) {
+        candidatesWithScores.push_back(localScores[i]);
+    }
+    
+    // 如果没有候选点，使用所有有效位置并计算分数
+    if (candidatesWithScores.empty()) {
+        for (const auto& move : validMoves) {
+            int x = move.first;
+            int y = move.second;
+            int score = board->evaluateMove(x, y, getColor());
+            candidatesWithScores.emplace_back(move, score);
+        }
+    }
     
     // 最多重试3次
     int maxRetries = 3;
     for (int i = 0; i < maxRetries; ++i) {
-        // 获取AI对所有有效位置的评分
-        std::vector<std::pair<std::pair<int, int>, int>> scores =
-            networkManager->getMoveScores(board, getColor(), validMoves, topK);
+        // 获取AI对筛选后候选点的评分
+        std::vector<std::pair<std::pair<int, int>, int>> scores = networkManager->getMoveScores(board, getColor(), candidatesWithScores, topK);
         
         // 检查评分结果是否有效
         if (!scores.empty()) {
@@ -87,13 +122,20 @@ Move AIPlayer::aiDecision(const GomokuBoard* board)
         }
     }
     
-    // 兜底策略：从所有有效位置中随机选择一个
+    // 兜底策略：从本地评分最高的候选点中选择
+    if (!localScores.empty()) {
+        return Move(localScores[0].first.first, localScores[0].first.second);
+    }
+    
+    // 如果本地评分也没有结果，随机选择一个
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dist(0, validMoves.size() - 1);
     int randomIndex = dist(gen);
     return Move(validMoves[randomIndex].first, validMoves[randomIndex].second);
 }
+
+
 
 int AIPlayer::evaluateBoard(const GomokuBoard* board)
 {
