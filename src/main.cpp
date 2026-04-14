@@ -11,6 +11,9 @@ int main(int argc, char *argv[])
     SetConsoleOutputCP(CP_UTF8);
     #endif
     QApplication a(argc, argv);
+
+    a.setWindowIcon(QIcon(":/icons/app_icon.svg"));
+
     MainWindow w;
     w.show();
     return a.exec();
