@@ -9,7 +9,10 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "Qt5_DIR": "D:\\Qt\\5.15.2\\mingw81_64\\lib\\cmake\\Qt5",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_CXX_COMPILER": "D:\\mingw64\\bin\\g++.exe",
+        "CMAKE_C_COMPILER": "D:\\mingw64\\bin\\gcc.exe",
+        "OPENSSL_ROOT_DIR":"D:\\openSSL\\ucrt64"
       }
     }
   ]

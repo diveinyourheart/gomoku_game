@@ -4,8 +4,10 @@
 #include <QWidget>
 #include <QLabel>
 #include <memory>
-class GomokuGame;
+class Game;
 class BoardWidget;
+#include "gomoku_constants.h"
+using namespace GomokuConst;
 
 class GomokuWidget : public QWidget
 {
@@ -21,7 +23,7 @@ protected:
 
 private:
 
-    std::shared_ptr<GomokuGame> game; // 游戏逻辑对象
+    std::shared_ptr<Game> game = nullptr; // 游戏逻辑对象
     QLabel *statusLabel; // 显示当前状态的标签
     BoardWidget *boardWidget; // 棋盘小部件
 
@@ -32,7 +34,8 @@ private slots:
     void onMoveMade(); // 处理落子成功信号
 
 public slots:
-    void startNewGame();
+    void startNewGame(GomokuConst::GameMode mode = GomokuConst::GameMode::Normal);
+    void onUndoButtonClicked();
 };
 
 #endif // GOMOKU_WIDGET_H

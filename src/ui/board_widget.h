@@ -3,12 +3,13 @@
 
 #include <QWidget>
 #include <memory>
-class GomokuGame;
+class Game;
 
 class BoardWidget : public QWidget {
     Q_OBJECT
 public:
-    explicit BoardWidget(std::shared_ptr<GomokuGame> game, QWidget* parent = nullptr);
+    explicit BoardWidget(std::shared_ptr<Game> game, QWidget* parent = nullptr);
+    void setGame(std::shared_ptr<Game> game);
 
 protected:
     void paintEvent(QPaintEvent*) override;
@@ -16,7 +17,7 @@ protected:
     void mousePressEvent(QMouseEvent* event) override;
 
 private:
-    std::shared_ptr<GomokuGame> game;
+    std::shared_ptr<Game> game;
 
     void drawBoard(QPainter& painter);
     void drawStones(QPainter& painter);

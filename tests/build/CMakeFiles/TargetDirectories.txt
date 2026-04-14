@@ -1,0 +1,3 @@
+D:/Code/game/tests/build/CMakeFiles/test_http_client.dir
+D:/Code/game/tests/build/CMakeFiles/edit_cache.dir
+D:/Code/game/tests/build/CMakeFiles/rebuild_cache.dir
