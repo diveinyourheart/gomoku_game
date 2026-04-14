@@ -130,6 +130,9 @@ gomoku_game_autogen/timestamp: \
 	D:/Code/game/src/game/player.cpp \
 	D:/Code/game/src/game/player.h \
 	D:/Code/game/src/main.cpp \
+	D:/Code/game/src/network/cameron314/blockingconcurrentqueue.h \
+	D:/Code/game/src/network/cameron314/concurrentqueue.h \
+	D:/Code/game/src/network/cameron314/lightweightsemaphore.h \
 	D:/Code/game/src/network/httplib.h \
 	D:/Code/game/src/network/network_manager.cpp \
 	D:/Code/game/src/network/network_manager.h \

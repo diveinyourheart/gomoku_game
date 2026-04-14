@@ -269,6 +269,7 @@ D:/Code/game/src/game/ai_game.h
  mdp:D:/mingw64/x86_64-w64-mingw32/include/wchar.h
  mdp:D:/mingw64/x86_64-w64-mingw32/include/wctype.h
 D:/Code/game/src/ui/gomoku_constants.h
+D:/Code/game/src/network/cameron314/lightweightsemaphore.h
 D:/Code/game/src/game/ai_player.h
 D:/Code/game/src/game/game.h
  mmc:Q_OBJECT
@@ -753,6 +754,8 @@ D:/Code/game/src/game/gomoku_game.h
  mdp:D:/mingw64/x86_64-w64-mingw32/include/wchar.h
 D:/Code/game/src/game/gomoku_player.h
 D:/Code/game/src/game/player.h
+D:/Code/game/src/network/cameron314/blockingconcurrentqueue.h
+D:/Code/game/src/network/cameron314/concurrentqueue.h
 D:/Code/game/src/network/httplib.h
 D:/Code/game/src/ui/mainwindow.cpp
  uic:ui_mainwindow.h

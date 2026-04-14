@@ -58,7 +58,7 @@ int main() {
     std::string player_str = (currentPlayer == GomokuBoard::BLACK) ? "BLACK" : "WHITE";
     std::cout << "Current player: " << player_str << std::endl;
 
-    Move move = networkManager.getBestMove(&board, currentPlayer);
+    PlayerMove move = networkManager.getBestMove(&board, currentPlayer);
     std::cout << "Best move: " << move.x << "," << move.y << std::endl;
 
     std::cout << "\nPress Enter to exit...";

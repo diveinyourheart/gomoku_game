@@ -127,6 +127,24 @@
 			null
 		],
 		[
+			"D:/Code/game/src/network/cameron314/blockingconcurrentqueue.h",
+			"MU",
+			"HJBRM4VPUB/moc_blockingconcurrentqueue.cpp",
+			null
+		],
+		[
+			"D:/Code/game/src/network/cameron314/concurrentqueue.h",
+			"MU",
+			"HJBRM4VPUB/moc_concurrentqueue.cpp",
+			null
+		],
+		[
+			"D:/Code/game/src/network/cameron314/lightweightsemaphore.h",
+			"MU",
+			"HJBRM4VPUB/moc_lightweightsemaphore.cpp",
+			null
+		],
+		[
 			"D:/Code/game/src/network/httplib.h",
 			"MU",
 			"UFQQIFJZKK/moc_httplib.cpp",

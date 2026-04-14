@@ -81,6 +81,9 @@ set(HEADERS
     src/network/nlohmann/json.hpp
     src/util/env_util.h
     src/config/config.h
+    src/network/cameron314/lightweightsemaphore.h
+    src/network/cameron314/concurrentqueue.h
+    src/network/cameron314/blockingconcurrentqueue.h
 )
 
 # UI 文件

@@ -75,7 +75,7 @@ bool GomokuGame::undoMove()
     }
     
     // 获取上一步落子
-    Move move = humanPlayer->undoMove();
+    PlayerMove move = humanPlayer->undoMove();
     if (move.x == -1 || move.y == -1) {
         return false;
     }

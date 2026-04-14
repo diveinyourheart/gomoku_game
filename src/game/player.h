@@ -3,10 +3,11 @@
 
 #include <stack>
 
-struct Move {
+struct PlayerMove {
     int x;
     int y;
-    Move(int x, int y) : x(x), y(y) {}
+    PlayerMove(int x, int y) : x(x), y(y) {}
+    PlayerMove() : x(-1), y(-1) {}
 };
 
 class Player

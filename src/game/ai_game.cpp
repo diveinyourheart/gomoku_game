@@ -1,17 +1,19 @@
 #include "ai_game.h"
+#include "network_manager.h"
+#include "network_event.h"
+#include <set>
 
 AIGame::AIGame(bool humanPlaysBlack, QObject *parent) : Game(parent), humanPlayer(nullptr), aiPlayer(nullptr), humanPlaysBlack(humanPlaysBlack)
 {
+    // 根据参数设置玩家索引和颜色
     if (humanPlaysBlack) {
-        // 人类玩家作为黑方（索引0），AI作为白方（索引1）
-        humanPlayerIndex = 0;
-        aiPlayerIndex = 1;
+        humanPlayerIndex = 0; // 黑方
+        aiPlayerIndex = 1;    // 白方
         humanPlayer = new GomokuPlayer(GomokuBoard::BLACK);
         aiPlayer = new AIPlayer(GomokuBoard::WHITE);
     } else {
-        // 人类玩家作为白方（索引1），AI作为黑方（索引0）
-        humanPlayerIndex = 1;
-        aiPlayerIndex = 0;
+        humanPlayerIndex = 1; // 白方
+        aiPlayerIndex = 0;    // 黑方
         humanPlayer = new GomokuPlayer(GomokuBoard::WHITE);
         aiPlayer = new AIPlayer(GomokuBoard::BLACK);
     }
@@ -21,6 +23,77 @@ AIGame::~AIGame()
 {
     delete humanPlayer;
     delete aiPlayer;
+}
+
+bool AIGame::event(QEvent* event) {
+    if (event->type() == NETWORK_RESPONSE_EVENT) {
+        NetworkResponseEvent* responseEvent = static_cast<NetworkResponseEvent*>(event);
+        
+        if (responseEvent->getType() == NetworkResponseEvent::ResponseType::GET_MOVE_SCORES) {
+            // 处理AI决策结果
+            handleAIDecision(responseEvent->getScores());
+        }
+        
+        return true;
+    }
+    
+    return QObject::event(event);
+}
+
+void AIGame::handleAIDecision(const std::vector<std::pair<std::pair<int, int>, int>>& scores) {
+    if (scores.empty()) {
+        return;
+    }
+    
+    // 检查是否有重复的位置
+    std::set<std::pair<int, int>> seenMoves;
+    bool hasDuplicates = false;
+    
+    for (const auto& score : scores) {
+        int x = score.first.first;
+        int y = score.first.second;
+        std::pair<int, int> currentMove = std::make_pair(x, y);
+        
+        if (seenMoves.find(currentMove) != seenMoves.end()) {
+            hasDuplicates = true;
+            break;
+        }
+        seenMoves.insert(currentMove);
+    }
+    
+    // 如果有重复的位置，使用本地决策
+    if (hasDuplicates) {
+        PlayerMove aiMove = aiPlayer->localDecision(&board);
+        makeMove(aiMove.x, aiMove.y);
+        return;
+    }
+    
+    // 找到分数最高的位置
+    int maxScore = -1;
+    std::pair<int, int> bestMove = scores[0].first;
+    
+    for (const auto& score : scores) {
+        int x = score.first.first;
+        int y = score.first.second;
+        int s = score.second;
+        
+        // 检查位置是否有效（棋盘上是否为空）
+        if (board.getStone(x, y) == GomokuBoard::EMPTY) {
+            if (s > maxScore) {
+                maxScore = s;
+                bestMove = std::make_pair(x, y);
+            }
+        }
+    }
+    
+    // 如果找到有效位置，执行落子
+    if (maxScore != -1) {
+        makeMove(bestMove.first, bestMove.second);
+    } else {
+        // 如果没有找到有效位置，使用本地决策
+        PlayerMove aiMove = aiPlayer->localDecision(&board);
+        makeMove(aiMove.x, aiMove.y);
+    }
 }
 
 void AIGame::startNewGame()
@@ -34,7 +107,7 @@ void AIGame::startNewGame()
     // 如果AI执黑子（人类执白子），则AI先下
     if (aiPlayerIndex == 0) {
         // AI自动落子
-        Move aiMove = aiPlayer->aiDecision(&board);
+        PlayerMove aiMove = aiPlayer->aiDecision(&board);
         makeMove(aiMove.x, aiMove.y);
     }
 }
@@ -65,14 +138,13 @@ bool AIGame::makeMove(int x, int y)
                 currentPlayerIndex = aiPlayerIndex; // 轮到AI
                 emit moveMade(); // 发送信号通知UI更新
                 
-                // AI自动落子
-                Move aiMove = aiPlayer->aiDecision(&board);
-                makeMove(aiMove.x, aiMove.y);
+                // 异步获取AI决策
+                aiPlayer->asyncDecision(&board, this);
             }
             return true;
         }
     } else if (currentPlayerIndex == aiPlayerIndex) {
-        // AI落子
+        // AI落子（由handleAIDecision方法处理）
         int currentPlayerColor = aiPlayer->getColor();
         if (board.placeStone(x, y, currentPlayerColor)) {
             // AI不需要记录落子

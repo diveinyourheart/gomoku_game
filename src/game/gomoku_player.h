@@ -10,11 +10,11 @@ public:
     ~GomokuPlayer();
 
     void addMove(int x, int y) override;
-    Move undoMove();
+    PlayerMove undoMove();
     bool hasMoves() const;
 
 private:
-    std::stack<Move> moveHistory;
+    std::stack<PlayerMove> moveHistory;
 };
 
 #endif // GOMOKU_PLAYER_H

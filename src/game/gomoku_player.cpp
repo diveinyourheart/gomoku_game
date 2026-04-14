@@ -10,17 +10,17 @@ GomokuPlayer::~GomokuPlayer()
 
 void GomokuPlayer::addMove(int x, int y)
 {
-    moveHistory.push(Move(x, y));
+    moveHistory.push(PlayerMove(x, y));
 }
 
-Move GomokuPlayer::undoMove()
+PlayerMove GomokuPlayer::undoMove()
 {
     if (!moveHistory.empty()) {
-        Move move = moveHistory.top();
+        PlayerMove move = moveHistory.top();
         moveHistory.pop();
         return move;
     }
-    return Move(-1, -1);
+    return PlayerMove(-1, -1);
 }
 
 bool GomokuPlayer::hasMoves() const

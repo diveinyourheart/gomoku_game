@@ -21,12 +21,12 @@ void AIPlayer::addMove(int x, int y)
     // AI玩家不需要记录落子历史
 }
 
-Move AIPlayer::aiDecision(const GomokuBoard* board)
+PlayerMove AIPlayer::aiDecision(const GomokuBoard* board)
 {
     // 获取棋盘上的所有有效位置
     std::vector<std::pair<int, int>> validMoves = board->getValidMoves();
     if (validMoves.empty()) {
-        return Move(-1, -1); // 棋盘已满
+        return PlayerMove(-1, -1); // 棋盘已满
     }
     
     // 定义topK值
@@ -116,7 +116,7 @@ Move AIPlayer::aiDecision(const GomokuBoard* board)
             
             // 如果找到有效位置，返回
             if (maxScore != -1) {
-                return Move(bestMove.first, bestMove.second);
+                return PlayerMove(bestMove.first, bestMove.second);
             }
         }
     }
@@ -146,6 +146,10 @@ int AIPlayer::evaluateBoard(const GomokuBoard* board)
     }
     
     return score;
+}
+
+NetworkManager* AIPlayer::getNetworkManager() const {
+    return networkManager.get();
 }
 
 std::vector<std::pair<int, int>> AIPlayer::generateMoves(const GomokuBoard* board)
@@ -203,12 +207,12 @@ int AIPlayer::minimax(GomokuBoard* board, int depth, int alpha, int beta, bool m
     }
 }
 
-Move AIPlayer::localDecision(const GomokuBoard* board, int depth)
+PlayerMove AIPlayer::localDecision(const GomokuBoard* board, int depth)
 {
     // 获取所有有效移动
     std::vector<std::pair<int, int>> moves = generateMoves(board);
     if (moves.empty()) {
-        return Move(-1, -1); // 棋盘已满
+        return PlayerMove(-1, -1); // 棋盘已满
     }
     
     int aiColor = getColor();
@@ -246,5 +250,54 @@ Move AIPlayer::localDecision(const GomokuBoard* board, int depth)
     }
     
     delete tempBoard;
-    return Move(bestMove.first, bestMove.second);
+    return PlayerMove(bestMove.first, bestMove.second);
+}
+
+void AIPlayer::asyncDecision(const GomokuBoard* board, AIGame* game) {
+    // 获取棋盘上的所有有效位置
+    std::vector<std::pair<int, int>> validMoves = board->getValidMoves();
+    if (validMoves.empty()) {
+        return; // 棋盘已满
+    }
+    
+    // 定义topK值
+    int topK = 5;
+    int localTopK = 15; // 本地筛选的候选点数量
+    
+    // 对所有有效位置进行本地评分
+    std::vector<std::pair<std::pair<int, int>, int>> localScores;
+    for (const auto& move : validMoves) {
+        int x = move.first;
+        int y = move.second;
+        int score = board->evaluateMove(x, y, getColor());
+        if (score > 0) {
+            localScores.emplace_back(move, score);
+        }
+    }
+    
+    // 按照本地评分排序
+    std::sort(localScores.begin(), localScores.end(), 
+              [](const auto& a, const auto& b) { 
+                  return a.second > b.second; 
+              });
+    
+    // 选择前localTopK个分数最高的候选点
+    std::vector<std::pair<std::pair<int, int>, int>> candidatesWithScores;
+    int candidateCount = std::min(localTopK, static_cast<int>(localScores.size()));
+    for (int i = 0; i < candidateCount; ++i) {
+        candidatesWithScores.push_back(localScores[i]);
+    }
+    
+    // 如果没有候选点，使用所有有效位置并计算分数
+    if (candidatesWithScores.empty()) {
+        for (const auto& move : validMoves) {
+            int x = move.first;
+            int y = move.second;
+            int score = board->evaluateMove(x, y, getColor());
+            candidatesWithScores.emplace_back(move, score);
+        }
+    }
+    
+    // 异步获取AI对筛选后候选点的评分
+    networkManager->asyncGetMoveScores(board, getColor(), candidatesWithScores, topK, game);
 }

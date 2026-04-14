@@ -24,6 +24,12 @@ public:
     int getHumanPlayerIndex() const;
     int getAiPlayerIndex() const;
     bool canPlayerMove() const override;
+    
+    // 处理AI决策结果
+    void handleAIDecision(const std::vector<std::pair<std::pair<int, int>, int>>& scores);
+    
+    // 处理Qt事件
+    bool event(QEvent* event) override;
 
 private:
     GomokuPlayer* humanPlayer; // 人类玩家
