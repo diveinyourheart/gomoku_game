@@ -106,20 +106,20 @@ void NetworkManager::processRequest(const NetworkRequest& request) {
     
     if (request.type == RequestType::GET_BEST_MOVE) {
         PlayerMove move = parseResponse(response);
-        // 创建网络响应事件
-        NetworkResponseEvent* event = new NetworkResponseEvent(NetworkResponseEvent::ResponseType::GET_BEST_MOVE, move);
+        // 创建网络响应事件，传入回合特征
+        NetworkResponseEvent* event = new NetworkResponseEvent(NetworkResponseEvent::ResponseType::GET_BEST_MOVE, move, request.turnFeature);
         // 发送事件到Qt事件循环
         QCoreApplication::postEvent(request.game, event);
     } else if (request.type == RequestType::GET_MOVE_SCORES) {
         std::vector<std::pair<std::pair<int, int>, int>> scores = parseScoreResponse(response);
-        // 创建网络响应事件
-        NetworkResponseEvent* event = new NetworkResponseEvent(NetworkResponseEvent::ResponseType::GET_MOVE_SCORES, scores);
+        // 创建网络响应事件，传入回合特征
+        NetworkResponseEvent* event = new NetworkResponseEvent(NetworkResponseEvent::ResponseType::GET_MOVE_SCORES, scores, request.turnFeature);
         // 发送事件到Qt事件循环
         QCoreApplication::postEvent(request.game, event);
     }
 }
 
-void NetworkManager::asyncGetMoveScores(const GomokuBoard* board, int currentPlayer, const std::vector<std::pair<std::pair<int, int>, int>>& candidatesWithScores, int topK, AIGame* game) {
+void NetworkManager::asyncGetMoveScores(const GomokuBoard* board, int currentPlayer, const std::vector<std::pair<std::pair<int, int>, int>>& candidatesWithScores, int topK, AIGame* game, const AIGame::TurnFeature& turnFeature) {
     std::string board_str = boardToString(board);
     std::string player_str = (currentPlayer == GomokuBoard::BLACK) ? "X" : "O";
     
@@ -183,6 +183,7 @@ void NetworkManager::asyncGetMoveScores(const GomokuBoard* board, int currentPla
     request.game = game;
     request.candidatesWithScores = candidatesWithScores;
     request.topK = topK;
+    request.turnFeature = turnFeature; // 设置回合特征
     
     // 将请求加入队列
     requestQueue.enqueue(request);

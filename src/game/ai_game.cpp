@@ -29,6 +29,15 @@ bool AIGame::event(QEvent* event) {
     if (event->type() == NETWORK_RESPONSE_EVENT) {
         NetworkResponseEvent* responseEvent = static_cast<NetworkResponseEvent*>(event);
         
+        // 获取当前回合特征
+        TurnFeature currentFeature = getCurrentTurnFeature();
+        
+        // 检测回合特征是否匹配
+        if (responseEvent->getTurnFeature() != currentFeature) {
+            // 回合特征不匹配，忽略此事件（可能是过期的响应）
+            return true;
+        }
+        
         if (responseEvent->getType() == NetworkResponseEvent::ResponseType::GET_MOVE_SCORES) {
             // 处理AI决策结果
             handleAIDecision(responseEvent->getScores());
@@ -38,6 +47,24 @@ bool AIGame::event(QEvent* event) {
     }
     
     return QObject::event(event);
+}
+
+AIGame::TurnFeature AIGame::getCurrentTurnFeature() const {
+    // 获取最后一步落子坐标
+    PlayerMove lastMove(-1, -1);
+    
+    // 根据当前玩家获取最后一步落子
+    if (currentPlayerIndex == humanPlayerIndex) {
+        if (humanPlayer->hasMoves()) {
+            lastMove = humanPlayer->getLastMove();
+        }
+    } else {
+        if (aiPlayer->hasMoves()) {
+            lastMove = aiPlayer->getLastMove();
+        }
+    }
+    
+    return TurnFeature(moveCount, currentPlayerIndex, lastMove);
 }
 
 void AIGame::handleAIDecision(const std::vector<std::pair<std::pair<int, int>, int>>& scores) {
@@ -103,6 +130,7 @@ void AIGame::startNewGame()
     gameStatus = GAME_IN_PROGRESS;
     winner = 0;
     moveCount = 0;
+    hasUndone = false; // 重置悔棋标志
     
     // 如果AI执黑子（人类执白子），则AI先下
     if (aiPlayerIndex == 0) {
@@ -110,12 +138,21 @@ void AIGame::startNewGame()
         PlayerMove aiMove = aiPlayer->aiDecision(&board);
         makeMove(aiMove.x, aiMove.y);
     }
+    
+    // 发送悔棋按钮状态信号
+    emit undoButtonStateChanged(false); // 游戏刚开始，禁用悔棋按钮
 }
 
 bool AIGame::makeMove(int x, int y)
 {
     if (gameStatus != GAME_IN_PROGRESS) {
         return false;
+    }
+
+    // 如果已经悔棋，重置悔棋标志
+    if (hasUndone) {
+        hasUndone = false;
+        emit undoButtonStateChanged(true); // 启用悔棋按钮
     }
 
     // 只有人类玩家可以手动落子
@@ -126,14 +163,20 @@ bool AIGame::makeMove(int x, int y)
             humanPlayer->addMove(x, y);
             
             moveCount++;
+            // 人类玩家第一次落子后启用悔棋按钮
+            if (currentPlayerIndex == humanPlayerIndex && humanPlayer->getMoveHistory().size() == 1) {
+                emit undoButtonStateChanged(true); // 启用悔棋按钮
+            }
             if (board.checkWin(x, y, currentPlayerColor)) {
                 gameStatus = GAME_FINISHED;
                 winner = currentPlayerColor;
                 emit gameOver(winner);
+                emit undoButtonStateChanged(false); // 游戏结束，禁用悔棋按钮
             } else if (board.isFull()) {
                 gameStatus = GAME_FINISHED;
                 winner = 0; // 平局
                 emit gameOver(winner);
+                emit undoButtonStateChanged(false); // 游戏结束，禁用悔棋按钮
             } else {
                 currentPlayerIndex = aiPlayerIndex; // 轮到AI
                 emit moveMade(); // 发送信号通知UI更新
@@ -147,17 +190,20 @@ bool AIGame::makeMove(int x, int y)
         // AI落子（由handleAIDecision方法处理）
         int currentPlayerColor = aiPlayer->getColor();
         if (board.placeStone(x, y, currentPlayerColor)) {
-            // AI不需要记录落子
+            // 记录AI的落子
+            aiPlayer->addMove(x, y);
             
             moveCount++;
             if (board.checkWin(x, y, currentPlayerColor)) {
                 gameStatus = GAME_FINISHED;
                 winner = currentPlayerColor;
                 emit gameOver(winner);
+                emit undoButtonStateChanged(false); // 游戏结束，禁用悔棋按钮
             } else if (board.isFull()) {
                 gameStatus = GAME_FINISHED;
                 winner = 0; // 平局
                 emit gameOver(winner);
+                emit undoButtonStateChanged(false); // 游戏结束，禁用悔棋按钮
             } else {
                 currentPlayerIndex = humanPlayerIndex; // 轮到人类玩家
                 emit moveMade(); // 发送信号通知UI更新
@@ -170,9 +216,54 @@ bool AIGame::makeMove(int x, int y)
 
 bool AIGame::undoMove()
 {
-    // AI模式悔棋较为复杂，需要考虑AI的落子记录和人类玩家的落子记录
-    // 这里简单地返回false，实际实现需要根据AI的落子记录和人类玩家的落子记录来判断
-    return false;
+    if (gameStatus != GAME_IN_PROGRESS || moveCount == 0 || hasUndone) {
+        return false;
+    }
+    
+    if (currentPlayerIndex == humanPlayerIndex) {
+        // 当前是人类玩家回合，需要撤回AI的落子和人类的落子
+        // 1. 撤回AI的落子
+        if (aiPlayer->hasMoves()) {
+            PlayerMove aiMove = aiPlayer->undoMove();
+            if (aiMove.x != -1 && aiMove.y != -1) {
+                board.removeStone(aiMove.x, aiMove.y);
+                moveCount--;
+            }
+        }
+        
+        // 2. 撤回人类的落子
+        if (humanPlayer->hasMoves()) {
+            PlayerMove humanMove = humanPlayer->undoMove();
+            if (humanMove.x != -1 && humanMove.y != -1) {
+                board.removeStone(humanMove.x, humanMove.y);
+                moveCount--;
+            }
+        }
+        
+        // 更新当前玩家为人类玩家
+        currentPlayerIndex = humanPlayerIndex;
+    } else {
+        // 当前是AI玩家回合，只需撤回人类的落子
+        if (humanPlayer->hasMoves()) {
+            PlayerMove humanMove = humanPlayer->undoMove();
+            if (humanMove.x != -1 && humanMove.y != -1) {
+                board.removeStone(humanMove.x, humanMove.y);
+                moveCount--;
+                
+                // 更新当前玩家为人类玩家
+                currentPlayerIndex = humanPlayerIndex;
+            }
+        }
+    }
+    
+    // 设置悔棋标志
+    hasUndone = true;
+    
+    // 发送信号通知UI更新
+    emit moveMade();
+    emit undoButtonStateChanged(false); // 禁用悔棋按钮
+    
+    return true;
 }
 
 int AIGame::getCurrentPlayer() const

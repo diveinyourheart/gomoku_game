@@ -20,6 +20,7 @@ public:
     int getWinner() const override;
     GomokuBoard* getBoard() override;
     int getMoveCount() const override;
+    bool canPlayerMove() const override;
 
 private:
     GomokuPlayer* players[2];

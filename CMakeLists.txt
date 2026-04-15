@@ -59,6 +59,7 @@ set(SOURCES
     src/ui/mainwindow.cpp
     src/ui/gomoku_widget.cpp
     src/ui/board_widget.cpp
+    src/ui/font_manager.cpp
     src/util/env_util.cpp
     src/config/config.cpp
 )
@@ -77,6 +78,7 @@ set(HEADERS
     src/ui/mainwindow.h
     src/ui/gomoku_widget.h
     src/ui/board_widget.h
+    src/ui/font_manager.h
     src/ui/gomoku_constants.h
     src/network/nlohmann/json.hpp
     src/util/env_util.h

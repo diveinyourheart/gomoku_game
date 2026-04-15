@@ -139,6 +139,8 @@ gomoku_game_autogen/timestamp: \
 	D:/Code/game/src/network/nlohmann/json.hpp \
 	D:/Code/game/src/ui/board_widget.cpp \
 	D:/Code/game/src/ui/board_widget.h \
+	D:/Code/game/src/ui/font_manager.cpp \
+	D:/Code/game/src/ui/font_manager.h \
 	D:/Code/game/src/ui/gomoku_constants.h \
 	D:/Code/game/src/ui/gomoku_widget.cpp \
 	D:/Code/game/src/ui/gomoku_widget.h \

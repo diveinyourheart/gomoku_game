@@ -16,11 +16,6 @@ AIPlayer::AIPlayer(int color)
 AIPlayer::~AIPlayer()
 {}
 
-void AIPlayer::addMove(int x, int y)
-{
-    // AI玩家不需要记录落子历史
-}
-
 PlayerMove AIPlayer::aiDecision(const GomokuBoard* board)
 {
     // 获取棋盘上的所有有效位置
@@ -260,6 +255,9 @@ void AIPlayer::asyncDecision(const GomokuBoard* board, AIGame* game) {
         return; // 棋盘已满
     }
     
+    // 获取当前回合特征
+    AIGame::TurnFeature currentFeature = game->getCurrentTurnFeature();
+    
     // 定义topK值
     int topK = 5;
     int localTopK = 15; // 本地筛选的候选点数量
@@ -298,6 +296,6 @@ void AIPlayer::asyncDecision(const GomokuBoard* board, AIGame* game) {
         }
     }
     
-    // 异步获取AI对筛选后候选点的评分
-    networkManager->asyncGetMoveScores(board, getColor(), candidatesWithScores, topK, game);
+    // 异步获取AI对筛选后候选点的评分，传入回合特征
+    networkManager->asyncGetMoveScores(board, getColor(), candidatesWithScores, topK, game, currentFeature);
 }

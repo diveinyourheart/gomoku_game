@@ -22,6 +22,7 @@ private slots:
     void onBtnNormalModeClicked();
     void onBtnAiModeClicked();
     void onActionBackToMenuTriggered();
+    void onUndoButtonStateChanged(bool enabled);
 
 private:
     Ui::MainWindow *ui;

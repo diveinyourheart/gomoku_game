@@ -9,9 +9,9 @@
 #include "player.h"
 #include <QCoreApplication>
 #include "cameron314/blockingconcurrentqueue.h"
+#include "ai_game.h"
 
 class GomokuBoard;
-class AIGame;
 
 // 请求类型
 enum class RequestType {
@@ -29,6 +29,8 @@ struct NetworkRequest {
     // 用于GET_MOVE_SCORES
     std::vector<std::pair<std::pair<int, int>, int>> candidatesWithScores;
     int topK;
+    // 回合特征，用于线程间透传和验证
+    AIGame::TurnFeature turnFeature;
 };
 
 class HttpClient {
@@ -48,7 +50,7 @@ public:
     std::vector<std::pair<std::pair<int, int>, int>> getMoveScores(const GomokuBoard* board, int currentPlayer, const std::vector<std::pair<std::pair<int, int>, int>>& candidatesWithScores, int topK);
     
     // 异步发送请求
-    void asyncGetMoveScores(const GomokuBoard* board, int currentPlayer, const std::vector<std::pair<std::pair<int, int>, int>>& candidatesWithScores, int topK, AIGame* game);
+    void asyncGetMoveScores(const GomokuBoard* board, int currentPlayer, const std::vector<std::pair<std::pair<int, int>, int>>& candidatesWithScores, int topK, AIGame* game, const AIGame::TurnFeature& turnFeature);
 
 private:
     std::string api_key;

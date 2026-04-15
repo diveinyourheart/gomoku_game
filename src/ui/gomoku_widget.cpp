@@ -8,6 +8,7 @@
 #include <QMessageBox>
 #include <QVBoxLayout>
 #include "board_widget.h"
+#include "font_manager.h"
 #include <QDebug>
 
 
@@ -17,9 +18,10 @@ GomokuWidget::GomokuWidget(QWidget *parent) : QWidget(parent)
     int boardWidth = MARGIN * 2 + CELL_SIZE * (BOARD_SIZE - 1);
 
     // 创建状态标签
-    statusLabel = new QLabel("当前回合：黑方，总回合数：0", this);
+    statusLabel = new QLabel("游戏未开始", this);
     statusLabel->setFixedWidth(boardWidth);
     statusLabel->setAlignment(Qt::AlignCenter);
+    statusLabel->setFont(FontManager::getFont(FontManager::StatusBar));
 
     // 创建棋盘小部件（暂时传入nullptr，后续在startNewGame中设置）
     boardWidget = new BoardWidget(nullptr, this);
@@ -60,7 +62,7 @@ void GomokuWidget::onMoveMade()
 
 void GomokuWidget::updateStatus()
 {
-    if (game) {
+    if (game && statusLabel) {
         int currentPlayerIndex = game->getCurrentPlayer();
         int moveCount = game->getMoveCount();
         QString playerColor = currentPlayerIndex == 0 ? "黑方" : "白方";
@@ -68,11 +70,14 @@ void GomokuWidget::updateStatus()
         QString playerType = "";
         if(ai_game != nullptr){
             playerType = ( ai_game->getCurrentPlayer() == ai_game -> getAiPlayerIndex() ? "AI" : "你" );
+            statusLabel->setText(QString("当前回合：%1（%2），总回合数：%3").arg(playerColor).arg(playerType).arg(moveCount));
+        }else if(dynamic_cast<GomokuGame*>(game.get()) != nullptr){
+            statusLabel->setText(QString("当前回合：%1，总回合数：%2").arg(playerColor).arg(moveCount));
         }
-        statusLabel->setText(QString("当前回合：%1（%2），总回合数：%3").arg(playerColor).arg(playerType).arg(moveCount));
     } else {
         statusLabel->setText("游戏未开始");
     }
+    update();
 }
 
 void GomokuWidget::onGameOver(int winner)
@@ -91,6 +96,12 @@ void GomokuWidget::startNewGame(GomokuConst::GameMode mode)
     if (game) {
         disconnect(game.get(), &Game::gameOver, this, &GomokuWidget::onGameOver);
         disconnect(game.get(), &Game::moveMade, this, &GomokuWidget::onMoveMade);
+        disconnect(game.get(), &Game::undoButtonStateChanged, this, &GomokuWidget::onUndoButtonStateChanged);
+        game->startNewGame();
+        updateStatus();
+        if(boardWidget){
+            boardWidget->update();
+        }
     }
 
     // 根据游戏模式创建不同的游戏对象
@@ -138,6 +149,7 @@ void GomokuWidget::startNewGame(GomokuConst::GameMode mode)
     // 连接信号与槽
     connect(game.get(), &Game::gameOver, this, &GomokuWidget::onGameOver);
     connect(game.get(), &Game::moveMade, this, &GomokuWidget::onMoveMade);
+    connect(game.get(), &Game::undoButtonStateChanged, this, &GomokuWidget::onUndoButtonStateChanged);
 
     // 更新棋盘小部件的游戏对象
     boardWidget->setGame(game);
@@ -147,12 +159,17 @@ void GomokuWidget::startNewGame(GomokuConst::GameMode mode)
 
     // 更新状态并重绘棋盘
     updateStatus();
-    update();
 }
 
 void GomokuWidget::onUndoButtonClicked()
 {
-    if (game && dynamic_cast<GomokuGame*>(game.get()) != nullptr) {
+    if (game) {
         game->undoMove();
     }
+}
+
+void GomokuWidget::onUndoButtonStateChanged(bool enabled)
+{
+    // 转发信号给MainWindow
+    emit undoButtonStateChanged(enabled);
 }

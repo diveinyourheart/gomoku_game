@@ -3,6 +3,7 @@
 
 #include <QEvent>
 #include "player.h"
+#include "ai_game.h"
 #include <vector>
 #include <utility>
 
@@ -18,20 +19,22 @@ public:
         GET_MOVE_SCORES
     };
 
-    NetworkResponseEvent(ResponseType type, const PlayerMove& move)
-        : QEvent(NETWORK_RESPONSE_EVENT), type(type), move(move) {}
+    NetworkResponseEvent(ResponseType type, const PlayerMove& move, const AIGame::TurnFeature& feature)
+        : QEvent(NETWORK_RESPONSE_EVENT), type(type), move(move), turnFeature(feature) {}
 
-    NetworkResponseEvent(ResponseType type, const std::vector<std::pair<std::pair<int, int>, int>>& scores)
-        : QEvent(NETWORK_RESPONSE_EVENT), type(type), scores(scores) {}
+    NetworkResponseEvent(ResponseType type, const std::vector<std::pair<std::pair<int, int>, int>>& scores, const AIGame::TurnFeature& feature)
+        : QEvent(NETWORK_RESPONSE_EVENT), type(type), scores(scores), turnFeature(feature) {}
 
     ResponseType getType() const { return type; }
     PlayerMove getMove() const { return move; }
     std::vector<std::pair<std::pair<int, int>, int>> getScores() const { return scores; }
+    AIGame::TurnFeature getTurnFeature() const { return turnFeature; }
 
 private:
     ResponseType type;
     PlayerMove move; // 用于GET_BEST_MOVE
     std::vector<std::pair<std::pair<int, int>, int>> scores; // 用于GET_MOVE_SCORES
+    AIGame::TurnFeature turnFeature; // 回合特征，用于验证
 };
 
 #endif // NETWORK_EVENT_H
