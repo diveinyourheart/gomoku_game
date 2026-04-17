@@ -20,6 +20,8 @@ public:
 private:
     EnvUtil();
     ~EnvUtil();
+    EnvUtil(const EnvUtil&) = delete;
+    EnvUtil& operator=(const EnvUtil&) = delete;
     
     std::map<std::string, std::string> envMap;
 };

@@ -3,6 +3,14 @@
 
 #include <vector>
 #include <utility>
+#ifndef TEST_ENVIRONMENT
+#include <QDebug>
+#include <QString>
+#elif TEST_ENVIRONMENT
+#include <iostream>
+#endif
+
+#include <random>
 
 class GomokuBoard
 {
@@ -32,7 +40,6 @@ public:
     int getStone(int x, int y) const;
     bool isFull() const;
     bool checkWin(int x, int y, int player) const;
-    void printBoard() const;
     bool generateRandomBoard(int maxStones);
     std::vector<std::pair<int, int>> getValidMoves() const;
     bool inBounds(int x, int y) const;
@@ -41,6 +48,7 @@ public:
     bool isOpen(int x, int y, int dx, int dy) const;
     int evaluateDirection(int x, int y, int dx, int dy, int player) const;
     int evaluateMove(int x, int y, int player) const;
+    std::string boardToString() const;
 
 private:
     int board[BOARD_SIZE][BOARD_SIZE];

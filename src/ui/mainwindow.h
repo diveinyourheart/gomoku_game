@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include "gomoku_constants.h"
+#include "ui_mainwindow.h"
+#include <QMessageBox>
+#include "font_manager.h"
 
 namespace Ui {
 class MainWindow;

@@ -1,10 +1,12 @@
 #ifndef AI_PLAYER_H
 #define AI_PLAYER_H
 
-#include "player.h"
-#include "gomoku_board.h"
 #include <memory>
 #include <stack>
+#include <vector>
+#include <utility>
+#include "player.h"
+#include "gomoku_board.h"
 class NetworkManager;
 
 class AIPlayer : public Player

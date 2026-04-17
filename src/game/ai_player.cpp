@@ -1,6 +1,8 @@
 #include "ai_player.h"
 #include "network_manager.h"
 #include "config.h"
+#include "game.h"
+#include "ai_game.h"
 #include <vector>
 #include <algorithm>
 #include <utility>
@@ -256,7 +258,7 @@ void AIPlayer::asyncDecision(const GomokuBoard* board, AIGame* game) {
     }
     
     // 获取当前回合特征
-    AIGame::TurnFeature currentFeature = game->getCurrentTurnFeature();
+    Game::TurnFeature currentFeature = game->getCurrentTurnFeature();
     
     // 定义topK值
     int topK = 5;

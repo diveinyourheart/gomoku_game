@@ -10,28 +10,6 @@ class AIGame : public Game
     Q_OBJECT
 
 public:
-    // 回合特征类
-    class TurnFeature {
-    public:
-        int turnNumber;      // 当前回合数
-        int playerIndex;     // 当前玩家索引
-        PlayerMove move;     // 当前回合玩家落子坐标
-
-        TurnFeature(int turn = 0, int player = 0, const PlayerMove& m = PlayerMove(-1, -1))
-            : turnNumber(turn), playerIndex(player), move(m) {}
-
-        bool operator==(const TurnFeature& other) const {
-            return turnNumber == other.turnNumber && 
-                   playerIndex == other.playerIndex && 
-                   move.x == other.move.x && 
-                   move.y == other.move.y;
-        }
-
-        bool operator!=(const TurnFeature& other) const {
-            return !(*this == other);
-        }
-    };
-
     AIGame(bool humanPlaysBlack = true, QObject *parent = nullptr);
     ~AIGame();
 
@@ -46,15 +24,13 @@ public:
     int getHumanPlayerIndex() const;
     int getAiPlayerIndex() const;
     bool canPlayerMove() const override;
+    TurnFeature getCurrentTurnFeature() const override;
     
     // 处理AI决策结果
     void handleAIDecision(const std::vector<std::pair<std::pair<int, int>, int>>& scores);
     
     // 处理Qt事件
     bool event(QEvent* event) override;
-    
-    // 获取当前回合特征
-    TurnFeature getCurrentTurnFeature() const;
 
 private:
     GomokuPlayer* humanPlayer; // 人类玩家

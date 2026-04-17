@@ -7,6 +7,7 @@
 #include <QMouseEvent>
 #include <QDebug>
 #include "gomoku_constants.h"
+#include "gomoku_qdebug_log.h"
 using namespace GomokuConst;
 
 BoardWidget::BoardWidget(std::shared_ptr<Game> game, QWidget* parent)
@@ -30,21 +31,24 @@ void BoardWidget::mousePressEvent(QMouseEvent* event)
     
     if(game->canPlayerMove()){
         qDebug() << "clicked board" << event->x() << "," << event->y();
+        LOG_INFO("clicked board: ",event->x(),",",event->y());
+
     
         int x = (event->x() - MARGIN + CELL_SIZE / 2) / CELL_SIZE;
         int y = (event->y() - MARGIN + CELL_SIZE / 2) / CELL_SIZE;
-        qDebug() << "The coordinates of this move are:" << x << "," << y;
+        LOG_INFO("The coordinates of this move are: ",x,",",y);
 
         if (x >= 0 && x < BOARD_SIZE && y >= 0 && y < BOARD_SIZE) {
-            if (game->makeMove(x, y)) {
-                update();
+            bool makeMoveSuccess = game->makeMove(x, y);
+            if(!makeMoveSuccess){
+                LOG_INFO("Invalid move");
             }
         }
 
-        qDebug() << "The current game status is:" << game->getGameStatus();
-        qDebug() << "The current move count is:" << game->getMoveCount();
-        qDebug() << "The current player is:" << game->getCurrentPlayer();
-        game->getBoard()->printBoard();
+        LOG_INFO("The current game status is: ",game->getGameStatus());
+        LOG_INFO("The current move count is: ",game->getMoveCount());
+        LOG_INFO("The current player is: ",game->getCurrentPlayer());
+        LOG_INFO("The current board is: ",game->getBoard()->boardToString());
     }
 }
 
@@ -68,12 +72,16 @@ void BoardWidget::drawBoard(QPainter& painter){
         painter.drawEllipse(x - 3, y - 3, 6, 6);
     }
 }
+
 void BoardWidget::drawStones(QPainter& painter){
     painter.setRenderHint(QPainter::Antialiasing);
 
     // 从游戏对象获取棋盘
     if (game) {
         GomokuBoard *board = game->getBoard();
+        // 获取当前回合特征，用于标识最近一次落子
+        Game::TurnFeature turnFeature = game->getCurrentTurnFeature();
+        LOG_INFO("The current turn feature is: ",turnFeature);
 
         for (int i = 0; i < BOARD_SIZE; ++i) {
             for (int j = 0; j < BOARD_SIZE; ++j) {
@@ -89,7 +97,16 @@ void BoardWidget::drawStones(QPainter& painter){
                         painter.setPen(QPen(Qt::black, 1));
                     }
 
+                    // 绘制棋子
                     painter.drawEllipse(x - CELL_SIZE / 2 + 2, y - CELL_SIZE / 2 + 2, CELL_SIZE - 4, CELL_SIZE - 4);
+
+                    // 检查是否是最近一次落子，如果是则绘制高亮效果
+                    if (i == turnFeature.move.x && j == turnFeature.move.y) {
+                        // 绘制高亮边框
+                        painter.setBrush(Qt::NoBrush);
+                        painter.setPen(QPen(Qt::red, 2));
+                        painter.drawEllipse(x - CELL_SIZE / 2, y - CELL_SIZE / 2, CELL_SIZE, CELL_SIZE);
+                    }
                 }
             }
         }

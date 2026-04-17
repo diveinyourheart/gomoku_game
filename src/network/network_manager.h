@@ -6,12 +6,18 @@
 #include <utility>
 #include <thread>
 #include <functional>
-#include "player.h"
 #include <QCoreApplication>
+#include "player.h"
 #include "cameron314/blockingconcurrentqueue.h"
 #include "ai_game.h"
-
-class GomokuBoard;
+#include "game.h"
+#include "gomoku_board.h"
+#include "httplib.h"
+#include <iostream>
+#include <sstream>
+#include <nlohmann/json.hpp> 
+#include "network_event.h"
+#include "gomoku_qdebug_log.h"
 
 // 请求类型
 enum class RequestType {
@@ -30,7 +36,7 @@ struct NetworkRequest {
     std::vector<std::pair<std::pair<int, int>, int>> candidatesWithScores;
     int topK;
     // 回合特征，用于线程间透传和验证
-    AIGame::TurnFeature turnFeature;
+    Game::TurnFeature turnFeature;
 };
 
 class HttpClient {
@@ -60,7 +66,6 @@ private:
     bool running;
     
     // 辅助方法
-    std::string boardToString(const GomokuBoard* board);
     std::string sendRequest(const std::string& system_content, const std::string& user_content);
     PlayerMove parseResponse(const std::string& response);
     std::vector<std::pair<std::pair<int, int>, int>> parseScoreResponse(const std::string& response);

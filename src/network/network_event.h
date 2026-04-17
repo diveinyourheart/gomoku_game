@@ -6,6 +6,7 @@
 #include "ai_game.h"
 #include <vector>
 #include <utility>
+#include "game.h"
 
 // 事件类型
 const QEvent::Type NETWORK_RESPONSE_EVENT = static_cast<QEvent::Type>(QEvent::User + 1);
@@ -28,7 +29,7 @@ public:
     ResponseType getType() const { return type; }
     PlayerMove getMove() const { return move; }
     std::vector<std::pair<std::pair<int, int>, int>> getScores() const { return scores; }
-    AIGame::TurnFeature getTurnFeature() const { return turnFeature; }
+    Game::TurnFeature getTurnFeature() const { return turnFeature; }
 
 private:
     ResponseType type;

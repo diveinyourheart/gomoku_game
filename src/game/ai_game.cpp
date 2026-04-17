@@ -1,6 +1,7 @@
 #include "ai_game.h"
 #include "network_manager.h"
 #include "network_event.h"
+#include "gomoku_board.h"
 #include <set>
 
 AIGame::AIGame(bool humanPlaysBlack, QObject *parent) : Game(parent), humanPlayer(nullptr), aiPlayer(nullptr), humanPlaysBlack(humanPlaysBlack)
@@ -49,12 +50,15 @@ bool AIGame::event(QEvent* event) {
     return QObject::event(event);
 }
 
-AIGame::TurnFeature AIGame::getCurrentTurnFeature() const {
+Game::TurnFeature AIGame::getCurrentTurnFeature() const {
     // 获取最后一步落子坐标
     PlayerMove lastMove(-1, -1);
     
-    // 根据当前玩家获取最后一步落子
-    if (currentPlayerIndex == humanPlayerIndex) {
+    // 获取上一个玩家的索引
+    int previousPlayerIndex = (currentPlayerIndex + 1) % 2;
+    
+    // 根据上一个玩家获取最后一步落子
+    if (previousPlayerIndex == humanPlayerIndex) {
         if (humanPlayer->hasMoves()) {
             lastMove = humanPlayer->getLastMove();
         }

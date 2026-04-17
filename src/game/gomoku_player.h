@@ -1,7 +1,7 @@
 #ifndef GOMOKU_PLAYER_H
 #define GOMOKU_PLAYER_H
 
-#include "player.h"
+class Player;
 
 class GomokuPlayer : public Player
 {

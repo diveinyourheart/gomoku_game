@@ -1,8 +1,11 @@
 #ifndef GOMOKU_GAME_H
 #define GOMOKU_GAME_H
 
+#include <QObject>
 #include "game.h"
 #include "gomoku_player.h"
+#include "gomoku_board.h"
+#include "gomoku_game.h"
 
 class GomokuGame : public Game
 {
@@ -21,6 +24,7 @@ public:
     GomokuBoard* getBoard() override;
     int getMoveCount() const override;
     bool canPlayerMove() const override;
+    TurnFeature getCurrentTurnFeature() const override;
 
 private:
     GomokuPlayer* players[2];

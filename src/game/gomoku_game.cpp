@@ -133,3 +133,19 @@ bool GomokuGame::canPlayerMove() const
 {
     return gameStatus == GAME_IN_PROGRESS;
 }
+
+Game::TurnFeature GomokuGame::getCurrentTurnFeature() const
+{
+    // 获取最后一步落子坐标
+    PlayerMove lastMove(-1, -1);
+    
+    // 获取上一个玩家的索引
+    int previousPlayerIndex = (currentPlayerIndex + 1) % 2;
+    
+    // 根据上一个玩家获取最后一步落子
+    if (players[previousPlayerIndex] && players[previousPlayerIndex]->hasMoves()) {
+        lastMove = players[previousPlayerIndex]->getLastMove();
+    }
+    
+    return TurnFeature(moveCount, currentPlayerIndex, lastMove);
+}

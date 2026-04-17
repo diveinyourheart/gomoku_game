@@ -1,16 +1,4 @@
 #include "gomoku_widget.h"
-#include "game.h"
-#include "gomoku_game.h"
-#include "ai_game.h"
-#include "gomoku_board.h"
-#include <QPainter>
-#include <QMouseEvent>
-#include <QMessageBox>
-#include <QVBoxLayout>
-#include "board_widget.h"
-#include "font_manager.h"
-#include <QDebug>
-
 
 GomokuWidget::GomokuWidget(QWidget *parent) : QWidget(parent)
 {
