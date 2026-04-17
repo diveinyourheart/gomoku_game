@@ -21,6 +21,8 @@ private:
 
     void drawBoard(QPainter& painter);
     void drawStones(QPainter& painter);
+    void drawRealisticStone(QPainter& painter, int x, int y, bool isBlack);
+    void highlightStone(QPainter& painter, int x, int y);
 
 private slots:
     void onMoveMade(); // 处理落子成功信号
