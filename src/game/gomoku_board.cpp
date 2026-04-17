@@ -1,14 +1,5 @@
 #include "gomoku_board.h"
-
-#ifndef TEST_ENVIRONMENT
-#include <QDebug>
-#include <QString>
-#elif TEST_ENVIRONMENT
-#include <iostream>
-#endif
-
-#include <random>
-#include <vector>
+#include <sstream>
 
 GomokuBoard::GomokuBoard()
 {
@@ -102,32 +93,23 @@ int GomokuBoard::checkDirection(int x, int y, int dx, int dy, int player) const
     return count;
 }
 
-void GomokuBoard::printBoard() const
-{
-#ifndef TEST_ENVIRONMENT
-    for (int i = 0; i < BOARD_SIZE; ++i) {
-        QString line;
-        for (int j = 0; j < BOARD_SIZE; ++j) {
-            line += QString::number(board[i][j]) + " ";
-        }
-        qDebug().noquote() << line;
-    }
-#else
-    for (int i = 0; i < BOARD_SIZE; ++i) {
-        for (int j = 0; j < BOARD_SIZE; ++j) {
-            int stone = board[i][j];
+std::string GomokuBoard::boardToString() const {
+    std::stringstream ss;
+    for (int y = 0; y < GomokuBoard::BOARD_SIZE; ++y) {
+        for (int x = 0; x < GomokuBoard::BOARD_SIZE; ++x) {
+            int stone = getStone(x, y);
             switch (stone) {
-                case EMPTY: std::cout << ".";
+                case GomokuBoard::EMPTY: ss << ".";
                     break;
-                case BLACK: std::cout << "X";
+                case GomokuBoard::BLACK: ss << "X";
                     break;
-                case WHITE: std::cout << "O";
+                case GomokuBoard::WHITE: ss << "O";
                     break;
             }
         }
-        std::cout << std::endl;
+        ss << "\n";
     }
-#endif
+    return ss.str();
 }
 
 bool GomokuBoard::generateRandomBoard(int maxStones)

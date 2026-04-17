@@ -1,6 +1,19 @@
 D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code/game/src/ui/gomoku_widget.h \
   D:/Code/game/build/gomoku_game_autogen/moc_predefs.h \
+  D:/Code/game/src/game/ai_game.h \
+  D:/Code/game/src/game/ai_player.h \
+  D:/Code/game/src/game/game.h \
+  D:/Code/game/src/game/gomoku_board.h \
+  D:/Code/game/src/game/gomoku_game.h \
+  D:/Code/game/src/game/gomoku_player.h \
+  D:/Code/game/src/game/player.h \
+  D:/Code/game/src/ui/board_widget.h \
+  D:/Code/game/src/ui/font_manager.h \
   D:/Code/game/src/ui/gomoku_constants.h \
+  D:/Code/game/src/ui/gomoku_widget.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtCore/QDebug \
+  D:/Qt/5.15.2/mingw81_64/include/QtCore/QObject \
+  D:/Qt/5.15.2/mingw81_64/include/QtCore/QString \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qalgorithms.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qarraydata.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qatomic.h \
@@ -13,7 +26,12 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qconfig.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qcontainerfwd.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qcontainertools_impl.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtCore/qcontiguouscache.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtCore/qcoreevent.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qdatastream.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtCore/qdebug.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtCore/qfile.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtCore/qfiledevice.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qflags.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qgenericatomic.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qglobal.h \
@@ -24,7 +42,9 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qiterator.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qline.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qlist.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtCore/qlocale.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qlogging.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtCore/qmap.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qmargins.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qmetatype.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qnamespace.h \
@@ -40,6 +60,7 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qrefcount.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qregexp.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qscopedpointer.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtCore/qset.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qshareddata.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qsharedpointer.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qsharedpointer_impl.h \
@@ -53,13 +74,20 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qsysinfo.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qsystemdetection.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qtcore-config.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtCore/qtextstream.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qtypeinfo.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtCore/qurl.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtCore/qvariant.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qvarlengtharray.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qvector.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qversiontagging.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtGui/QFont \
+  D:/Qt/5.15.2/mingw81_64/include/QtGui/QMouseEvent \
+  D:/Qt/5.15.2/mingw81_64/include/QtGui/QPainter \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qbrush.h \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qcolor.h \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qcursor.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtGui/qevent.h \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qfont.h \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qfontinfo.h \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qfontmetrics.h \
@@ -67,22 +95,35 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qkeysequence.h \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qmatrix.h \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qpaintdevice.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtGui/qpainter.h \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qpalette.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtGui/qpen.h \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qpixelformat.h \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qpixmap.h \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qpolygon.h \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qregion.h \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qrgb.h \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qrgba64.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtGui/qtextoption.h \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qtgui-config.h \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qtguiglobal.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtGui/qtouchdevice.h \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qtransform.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtGui/qvector2d.h \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qwindowdefs.h \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qwindowdefs_win.h \
   D:/Qt/5.15.2/mingw81_64/include/QtWidgets/QLabel \
+  D:/Qt/5.15.2/mingw81_64/include/QtWidgets/QMessageBox \
+  D:/Qt/5.15.2/mingw81_64/include/QtWidgets/QVBoxLayout \
   D:/Qt/5.15.2/mingw81_64/include/QtWidgets/QWidget \
+  D:/Qt/5.15.2/mingw81_64/include/QtWidgets/qboxlayout.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtWidgets/qdialog.h \
   D:/Qt/5.15.2/mingw81_64/include/QtWidgets/qframe.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtWidgets/qgridlayout.h \
   D:/Qt/5.15.2/mingw81_64/include/QtWidgets/qlabel.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtWidgets/qlayout.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtWidgets/qlayoutitem.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtWidgets/qmessagebox.h \
   D:/Qt/5.15.2/mingw81_64/include/QtWidgets/qsizepolicy.h \
   D:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtwidgets-config.h \
   D:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -112,6 +153,7 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/cpp_type_traits.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/cxxabi_forced.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/cxxabi_init_exception.h \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/deque.tcc \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/erase_if.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/exception.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/exception_defines.h \
@@ -122,6 +164,7 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/hash_bytes.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/invoke.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/ios_base.h \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/istream.tcc \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/iterator_concepts.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/list.tcc \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/locale_classes.h \
@@ -140,6 +183,7 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/new_allocator.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/node_handle.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/ostream.h \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/ostream.tcc \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/ostream_insert.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/out_ptr.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/postypes.h \
@@ -158,6 +202,7 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/shared_ptr.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/shared_ptr_atomic.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/shared_ptr_base.h \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/sstream.tcc \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/std_abs.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/std_function.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/std_mutex.h \
@@ -165,6 +210,7 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/stl_algobase.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/stl_bvector.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/stl_construct.h \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/stl_deque.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/stl_function.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/stl_heap.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/stl_iterator.h \
@@ -177,6 +223,7 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/stl_pair.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/stl_raw_storage_iter.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/stl_relops.h \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/stl_stack.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/stl_tempbuf.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/stl_tree.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/stl_uninitialized.h \
@@ -206,6 +253,7 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/cwctype \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/debug/assertions.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/debug/debug.h \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/deque \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/exception \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/ext/aligned_buffer.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/ext/alloc_traits.h \
@@ -214,10 +262,12 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/ext/numeric_traits.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/ext/string_conversions.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/ext/type_traits.h \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/format \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/functional \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/initializer_list \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/ios \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/iosfwd \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/istream \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/iterator \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/limits \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/list \
@@ -227,8 +277,13 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/numbers \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/numeric \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/optional \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/ostream \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/pstl/execution_defs.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/pstl/glue_numeric_defs.h \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/random \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/ranges \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/sstream \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/stack \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/stdexcept \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/stdlib.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/streambuf \

@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include "gomoku_constants.h"
+#include "ui_mainwindow.h"
+#include <QMessageBox>
+#include "font_manager.h"
 
 namespace Ui {
 class MainWindow;
@@ -22,6 +25,7 @@ private slots:
     void onBtnNormalModeClicked();
     void onBtnAiModeClicked();
     void onActionBackToMenuTriggered();
+    void onUndoButtonStateChanged(bool enabled);
 
 private:
     Ui::MainWindow *ui;

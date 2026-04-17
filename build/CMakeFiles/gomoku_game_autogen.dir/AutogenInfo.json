@@ -169,6 +169,12 @@
 			null
 		],
 		[
+			"D:/Code/game/src/ui/font_manager.h",
+			"MU",
+			"YPKJ5OE7LN/moc_font_manager.cpp",
+			null
+		],
+		[
 			"D:/Code/game/src/ui/gomoku_constants.h",
 			"MU",
 			"YPKJ5OE7LN/moc_gomoku_constants.cpp",
@@ -191,7 +197,26 @@
 			"MU",
 			"2V62BZ2VFR/moc_env_util.cpp",
 			null
-		]
+		],
+		[
+			"D:/Code/game/src/util/gomoku_console_log.h",
+			"MU",
+			"2V62BZ2VFR/moc_gomoku_console_log.cpp",
+			null
+		],
+		[
+			"D:/Code/game/src/util/gomoku_file_log.h",
+			"MU",
+			"2V62BZ2VFR/moc_gomoku_file_log.cpp",
+			null
+		],
+		[
+			"D:/Code/game/src/util/gomoku_qdebug_log.h",
+			"MU",
+			"2V62BZ2VFR/moc_gomoku_qdebug_log.cpp",
+			null
+		],
+		[ "D:/Code/game/src/util/log.h", "MU", "2V62BZ2VFR/moc_log.cpp", null ]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
 	"INCLUDE_DIR" : "D:/Code/game/build/gomoku_game_autogen/include",
@@ -199,6 +224,7 @@
 	"MOC_DEFINITIONS" : 
 	[
 		"CPPHTTPLIB_OPENSSL_SUPPORT",
+		"MY_DEBUG",
 		"QT_CORE_LIB",
 		"QT_GUI_LIB",
 		"QT_WIDGETS_LIB"
@@ -267,9 +293,11 @@
 		[ "D:/Code/game/src/main.cpp", "MU", null ],
 		[ "D:/Code/game/src/network/network_manager.cpp", "MU", null ],
 		[ "D:/Code/game/src/ui/board_widget.cpp", "MU", null ],
+		[ "D:/Code/game/src/ui/font_manager.cpp", "MU", null ],
 		[ "D:/Code/game/src/ui/gomoku_widget.cpp", "MU", null ],
 		[ "D:/Code/game/src/ui/mainwindow.cpp", "MU", null ],
-		[ "D:/Code/game/src/util/env_util.cpp", "MU", null ]
+		[ "D:/Code/game/src/util/env_util.cpp", "MU", null ],
+		[ "D:/Code/game/src/util/log.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [ "D:/Code/game/forms" ],

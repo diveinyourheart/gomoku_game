@@ -10,6 +10,7 @@
 #include "../src/network/network_manager.h"
 #include "../src/util/env_util.h"
 #include "../src/game/player.h"
+#include "../src/util/gomoku_console_log.h"
 
 // 声明测试函数
 void testHttpClient(const std::string& api_key);
@@ -18,16 +19,14 @@ void testHttpClient(const std::string& api_key);
 void testHttpClient(const std::string& api_key);
 
 void testRandomBoardGenerator(GomokuBoard& board) {
-    std::cout << "Testing GomokuBoard random board generator..." << std::endl;
+    LOG_INFO("Testing GomokuBoard random board generator...");
 
     board.generateRandomBoard(100);
 
-    std::cout << "\nGenerated random board (.=empty, X=black, O=white):" << std::endl;
-    std::cout << std::endl;
+    LOG_INFO("Generated random board (.=empty, X=black, O=white):");
+    LOG_INFO(board.boardToString());
 
-    board.printBoard();
-
-    std::cout << "\nRandomBoardGenerator Test completed!" << std::endl;
+    LOG_INFO("RandomBoardGenerator Test completed!");
 }
 
 int main() {
@@ -40,7 +39,7 @@ int main() {
     // 加载环境变量
     EnvUtil::getInstance().loadEnvFile("../../.env");
     std::string api_key = EnvUtil::getInstance().getEnv("DEEPSEEK_API_KEY", "");
-    std::cout << "DEEPSEEK_API_KEY: " << api_key << std::endl;
+    LOG_INFO("DEEPSEEK_API_KEY: ",api_key);
 
     GomokuBoard board;
     testRandomBoardGenerator(board);
@@ -56,12 +55,12 @@ int main() {
     int currentPlayer = (dis(gen) == 0) ? GomokuBoard::BLACK : GomokuBoard::WHITE;
     
     std::string player_str = (currentPlayer == GomokuBoard::BLACK) ? "BLACK" : "WHITE";
-    std::cout << "Current player: " << player_str << std::endl;
+    LOG_INFO("Current player: ",player_str);
 
     PlayerMove move = networkManager.getBestMove(&board, currentPlayer);
-    std::cout << "Best move: " << move.x << "," << move.y << std::endl;
+    LOG_INFO("Best move: ",move.x,move.y);
 
-    std::cout << "\nPress Enter to exit...";
+    LOG_INFO("\nPress Enter to exit...");
     std::cin.get();
     return 0;
 }
@@ -86,8 +85,8 @@ void testHttpClient(const std::string& api_key) {
     NetworkManager networkManager(api_key);
     std::string response = HttpClient::post(url, request_data, api_key);
     
-    std::cout << "Response from server:" << std::endl;
-    std::cout << response << std::endl;
+    LOG_INFO("Response from server:");
+    LOG_INFO(response);
     
-    std::cout << "Test completed!" << std::endl;
+    LOG_INFO("Test completed!");
 }

@@ -50,7 +50,7 @@ cmake_ninja_workdir = D$:/Code/game/build/
 build cmake_object_order_depends_target_gomoku_game: phony || gomoku_game_autogen gomoku_game_autogen/3YJK5W5UP7/qrc_resources.cpp gomoku_game_autogen/mocs_compilation.cpp gomoku_game_autogen/timestamp gomoku_game_autogen_timestamp_deps
 
 build CMakeFiles/gomoku_game.dir/gomoku_game_autogen/mocs_compilation.cpp.obj: CXX_COMPILER__gomoku_game_unscanned_Debug D$:/Code/game/build/gomoku_game_autogen/mocs_compilation.cpp || cmake_object_order_depends_target_gomoku_game
-  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DMY_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles\gomoku_game.dir\gomoku_game_autogen\mocs_compilation.cpp.obj.d
   FLAGS = -g -std=c++17 -finput-charset=UTF-8
   INCLUDES = -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -ID:/Code/game/src/network -ID:/Code/game/src/util -ID:/Code/game/src/config -isystem D:/Qt/5.15.2/mingw81_64/include -isystem D:/Qt/5.15.2/mingw81_64/include/QtCore -isystem D:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++ -isystem D:/Qt/5.15.2/mingw81_64/include/QtGui -isystem D:/Qt/5.15.2/mingw81_64/include/QtANGLE -isystem D:/Qt/5.15.2/mingw81_64/include/QtWidgets -isystem D:/openSSL/ucrt64/include
@@ -58,7 +58,7 @@ build CMakeFiles/gomoku_game.dir/gomoku_game_autogen/mocs_compilation.cpp.obj: C
   OBJECT_FILE_DIR = CMakeFiles\gomoku_game.dir\gomoku_game_autogen
 
 build CMakeFiles/gomoku_game.dir/src/main.cpp.obj: CXX_COMPILER__gomoku_game_unscanned_Debug D$:/Code/game/src/main.cpp || cmake_object_order_depends_target_gomoku_game
-  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DMY_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles\gomoku_game.dir\src\main.cpp.obj.d
   FLAGS = -g -std=c++17 -finput-charset=UTF-8
   INCLUDES = -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -ID:/Code/game/src/network -ID:/Code/game/src/util -ID:/Code/game/src/config -isystem D:/Qt/5.15.2/mingw81_64/include -isystem D:/Qt/5.15.2/mingw81_64/include/QtCore -isystem D:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++ -isystem D:/Qt/5.15.2/mingw81_64/include/QtGui -isystem D:/Qt/5.15.2/mingw81_64/include/QtANGLE -isystem D:/Qt/5.15.2/mingw81_64/include/QtWidgets -isystem D:/openSSL/ucrt64/include
@@ -66,7 +66,7 @@ build CMakeFiles/gomoku_game.dir/src/main.cpp.obj: CXX_COMPILER__gomoku_game_uns
   OBJECT_FILE_DIR = CMakeFiles\gomoku_game.dir\src
 
 build CMakeFiles/gomoku_game.dir/src/game/gomoku_board.cpp.obj: CXX_COMPILER__gomoku_game_unscanned_Debug D$:/Code/game/src/game/gomoku_board.cpp || cmake_object_order_depends_target_gomoku_game
-  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DMY_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles\gomoku_game.dir\src\game\gomoku_board.cpp.obj.d
   FLAGS = -g -std=c++17 -finput-charset=UTF-8
   INCLUDES = -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -ID:/Code/game/src/network -ID:/Code/game/src/util -ID:/Code/game/src/config -isystem D:/Qt/5.15.2/mingw81_64/include -isystem D:/Qt/5.15.2/mingw81_64/include/QtCore -isystem D:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++ -isystem D:/Qt/5.15.2/mingw81_64/include/QtGui -isystem D:/Qt/5.15.2/mingw81_64/include/QtANGLE -isystem D:/Qt/5.15.2/mingw81_64/include/QtWidgets -isystem D:/openSSL/ucrt64/include
@@ -74,7 +74,7 @@ build CMakeFiles/gomoku_game.dir/src/game/gomoku_board.cpp.obj: CXX_COMPILER__go
   OBJECT_FILE_DIR = CMakeFiles\gomoku_game.dir\src\game
 
 build CMakeFiles/gomoku_game.dir/src/game/game.cpp.obj: CXX_COMPILER__gomoku_game_unscanned_Debug D$:/Code/game/src/game/game.cpp || cmake_object_order_depends_target_gomoku_game
-  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DMY_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles\gomoku_game.dir\src\game\game.cpp.obj.d
   FLAGS = -g -std=c++17 -finput-charset=UTF-8
   INCLUDES = -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -ID:/Code/game/src/network -ID:/Code/game/src/util -ID:/Code/game/src/config -isystem D:/Qt/5.15.2/mingw81_64/include -isystem D:/Qt/5.15.2/mingw81_64/include/QtCore -isystem D:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++ -isystem D:/Qt/5.15.2/mingw81_64/include/QtGui -isystem D:/Qt/5.15.2/mingw81_64/include/QtANGLE -isystem D:/Qt/5.15.2/mingw81_64/include/QtWidgets -isystem D:/openSSL/ucrt64/include
@@ -82,7 +82,7 @@ build CMakeFiles/gomoku_game.dir/src/game/game.cpp.obj: CXX_COMPILER__gomoku_gam
   OBJECT_FILE_DIR = CMakeFiles\gomoku_game.dir\src\game
 
 build CMakeFiles/gomoku_game.dir/src/game/gomoku_game.cpp.obj: CXX_COMPILER__gomoku_game_unscanned_Debug D$:/Code/game/src/game/gomoku_game.cpp || cmake_object_order_depends_target_gomoku_game
-  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DMY_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles\gomoku_game.dir\src\game\gomoku_game.cpp.obj.d
   FLAGS = -g -std=c++17 -finput-charset=UTF-8
   INCLUDES = -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -ID:/Code/game/src/network -ID:/Code/game/src/util -ID:/Code/game/src/config -isystem D:/Qt/5.15.2/mingw81_64/include -isystem D:/Qt/5.15.2/mingw81_64/include/QtCore -isystem D:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++ -isystem D:/Qt/5.15.2/mingw81_64/include/QtGui -isystem D:/Qt/5.15.2/mingw81_64/include/QtANGLE -isystem D:/Qt/5.15.2/mingw81_64/include/QtWidgets -isystem D:/openSSL/ucrt64/include
@@ -90,7 +90,7 @@ build CMakeFiles/gomoku_game.dir/src/game/gomoku_game.cpp.obj: CXX_COMPILER__gom
   OBJECT_FILE_DIR = CMakeFiles\gomoku_game.dir\src\game
 
 build CMakeFiles/gomoku_game.dir/src/game/player.cpp.obj: CXX_COMPILER__gomoku_game_unscanned_Debug D$:/Code/game/src/game/player.cpp || cmake_object_order_depends_target_gomoku_game
-  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DMY_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles\gomoku_game.dir\src\game\player.cpp.obj.d
   FLAGS = -g -std=c++17 -finput-charset=UTF-8
   INCLUDES = -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -ID:/Code/game/src/network -ID:/Code/game/src/util -ID:/Code/game/src/config -isystem D:/Qt/5.15.2/mingw81_64/include -isystem D:/Qt/5.15.2/mingw81_64/include/QtCore -isystem D:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++ -isystem D:/Qt/5.15.2/mingw81_64/include/QtGui -isystem D:/Qt/5.15.2/mingw81_64/include/QtANGLE -isystem D:/Qt/5.15.2/mingw81_64/include/QtWidgets -isystem D:/openSSL/ucrt64/include
@@ -98,7 +98,7 @@ build CMakeFiles/gomoku_game.dir/src/game/player.cpp.obj: CXX_COMPILER__gomoku_g
   OBJECT_FILE_DIR = CMakeFiles\gomoku_game.dir\src\game
 
 build CMakeFiles/gomoku_game.dir/src/game/gomoku_player.cpp.obj: CXX_COMPILER__gomoku_game_unscanned_Debug D$:/Code/game/src/game/gomoku_player.cpp || cmake_object_order_depends_target_gomoku_game
-  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DMY_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles\gomoku_game.dir\src\game\gomoku_player.cpp.obj.d
   FLAGS = -g -std=c++17 -finput-charset=UTF-8
   INCLUDES = -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -ID:/Code/game/src/network -ID:/Code/game/src/util -ID:/Code/game/src/config -isystem D:/Qt/5.15.2/mingw81_64/include -isystem D:/Qt/5.15.2/mingw81_64/include/QtCore -isystem D:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++ -isystem D:/Qt/5.15.2/mingw81_64/include/QtGui -isystem D:/Qt/5.15.2/mingw81_64/include/QtANGLE -isystem D:/Qt/5.15.2/mingw81_64/include/QtWidgets -isystem D:/openSSL/ucrt64/include
@@ -106,7 +106,7 @@ build CMakeFiles/gomoku_game.dir/src/game/gomoku_player.cpp.obj: CXX_COMPILER__g
   OBJECT_FILE_DIR = CMakeFiles\gomoku_game.dir\src\game
 
 build CMakeFiles/gomoku_game.dir/src/game/ai_player.cpp.obj: CXX_COMPILER__gomoku_game_unscanned_Debug D$:/Code/game/src/game/ai_player.cpp || cmake_object_order_depends_target_gomoku_game
-  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DMY_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles\gomoku_game.dir\src\game\ai_player.cpp.obj.d
   FLAGS = -g -std=c++17 -finput-charset=UTF-8
   INCLUDES = -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -ID:/Code/game/src/network -ID:/Code/game/src/util -ID:/Code/game/src/config -isystem D:/Qt/5.15.2/mingw81_64/include -isystem D:/Qt/5.15.2/mingw81_64/include/QtCore -isystem D:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++ -isystem D:/Qt/5.15.2/mingw81_64/include/QtGui -isystem D:/Qt/5.15.2/mingw81_64/include/QtANGLE -isystem D:/Qt/5.15.2/mingw81_64/include/QtWidgets -isystem D:/openSSL/ucrt64/include
@@ -114,7 +114,7 @@ build CMakeFiles/gomoku_game.dir/src/game/ai_player.cpp.obj: CXX_COMPILER__gomok
   OBJECT_FILE_DIR = CMakeFiles\gomoku_game.dir\src\game
 
 build CMakeFiles/gomoku_game.dir/src/game/ai_game.cpp.obj: CXX_COMPILER__gomoku_game_unscanned_Debug D$:/Code/game/src/game/ai_game.cpp || cmake_object_order_depends_target_gomoku_game
-  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DMY_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles\gomoku_game.dir\src\game\ai_game.cpp.obj.d
   FLAGS = -g -std=c++17 -finput-charset=UTF-8
   INCLUDES = -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -ID:/Code/game/src/network -ID:/Code/game/src/util -ID:/Code/game/src/config -isystem D:/Qt/5.15.2/mingw81_64/include -isystem D:/Qt/5.15.2/mingw81_64/include/QtCore -isystem D:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++ -isystem D:/Qt/5.15.2/mingw81_64/include/QtGui -isystem D:/Qt/5.15.2/mingw81_64/include/QtANGLE -isystem D:/Qt/5.15.2/mingw81_64/include/QtWidgets -isystem D:/openSSL/ucrt64/include
@@ -122,7 +122,7 @@ build CMakeFiles/gomoku_game.dir/src/game/ai_game.cpp.obj: CXX_COMPILER__gomoku_
   OBJECT_FILE_DIR = CMakeFiles\gomoku_game.dir\src\game
 
 build CMakeFiles/gomoku_game.dir/src/network/network_manager.cpp.obj: CXX_COMPILER__gomoku_game_unscanned_Debug D$:/Code/game/src/network/network_manager.cpp || cmake_object_order_depends_target_gomoku_game
-  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DMY_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles\gomoku_game.dir\src\network\network_manager.cpp.obj.d
   FLAGS = -g -std=c++17 -finput-charset=UTF-8
   INCLUDES = -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -ID:/Code/game/src/network -ID:/Code/game/src/util -ID:/Code/game/src/config -isystem D:/Qt/5.15.2/mingw81_64/include -isystem D:/Qt/5.15.2/mingw81_64/include/QtCore -isystem D:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++ -isystem D:/Qt/5.15.2/mingw81_64/include/QtGui -isystem D:/Qt/5.15.2/mingw81_64/include/QtANGLE -isystem D:/Qt/5.15.2/mingw81_64/include/QtWidgets -isystem D:/openSSL/ucrt64/include
@@ -130,7 +130,7 @@ build CMakeFiles/gomoku_game.dir/src/network/network_manager.cpp.obj: CXX_COMPIL
   OBJECT_FILE_DIR = CMakeFiles\gomoku_game.dir\src\network
 
 build CMakeFiles/gomoku_game.dir/src/ui/mainwindow.cpp.obj: CXX_COMPILER__gomoku_game_unscanned_Debug D$:/Code/game/src/ui/mainwindow.cpp || cmake_object_order_depends_target_gomoku_game
-  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DMY_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles\gomoku_game.dir\src\ui\mainwindow.cpp.obj.d
   FLAGS = -g -std=c++17 -finput-charset=UTF-8
   INCLUDES = -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -ID:/Code/game/src/network -ID:/Code/game/src/util -ID:/Code/game/src/config -isystem D:/Qt/5.15.2/mingw81_64/include -isystem D:/Qt/5.15.2/mingw81_64/include/QtCore -isystem D:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++ -isystem D:/Qt/5.15.2/mingw81_64/include/QtGui -isystem D:/Qt/5.15.2/mingw81_64/include/QtANGLE -isystem D:/Qt/5.15.2/mingw81_64/include/QtWidgets -isystem D:/openSSL/ucrt64/include
@@ -138,7 +138,7 @@ build CMakeFiles/gomoku_game.dir/src/ui/mainwindow.cpp.obj: CXX_COMPILER__gomoku
   OBJECT_FILE_DIR = CMakeFiles\gomoku_game.dir\src\ui
 
 build CMakeFiles/gomoku_game.dir/src/ui/gomoku_widget.cpp.obj: CXX_COMPILER__gomoku_game_unscanned_Debug D$:/Code/game/src/ui/gomoku_widget.cpp || cmake_object_order_depends_target_gomoku_game
-  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DMY_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles\gomoku_game.dir\src\ui\gomoku_widget.cpp.obj.d
   FLAGS = -g -std=c++17 -finput-charset=UTF-8
   INCLUDES = -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -ID:/Code/game/src/network -ID:/Code/game/src/util -ID:/Code/game/src/config -isystem D:/Qt/5.15.2/mingw81_64/include -isystem D:/Qt/5.15.2/mingw81_64/include/QtCore -isystem D:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++ -isystem D:/Qt/5.15.2/mingw81_64/include/QtGui -isystem D:/Qt/5.15.2/mingw81_64/include/QtANGLE -isystem D:/Qt/5.15.2/mingw81_64/include/QtWidgets -isystem D:/openSSL/ucrt64/include
@@ -146,15 +146,23 @@ build CMakeFiles/gomoku_game.dir/src/ui/gomoku_widget.cpp.obj: CXX_COMPILER__gom
   OBJECT_FILE_DIR = CMakeFiles\gomoku_game.dir\src\ui
 
 build CMakeFiles/gomoku_game.dir/src/ui/board_widget.cpp.obj: CXX_COMPILER__gomoku_game_unscanned_Debug D$:/Code/game/src/ui/board_widget.cpp || cmake_object_order_depends_target_gomoku_game
-  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DMY_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles\gomoku_game.dir\src\ui\board_widget.cpp.obj.d
   FLAGS = -g -std=c++17 -finput-charset=UTF-8
   INCLUDES = -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -ID:/Code/game/src/network -ID:/Code/game/src/util -ID:/Code/game/src/config -isystem D:/Qt/5.15.2/mingw81_64/include -isystem D:/Qt/5.15.2/mingw81_64/include/QtCore -isystem D:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++ -isystem D:/Qt/5.15.2/mingw81_64/include/QtGui -isystem D:/Qt/5.15.2/mingw81_64/include/QtANGLE -isystem D:/Qt/5.15.2/mingw81_64/include/QtWidgets -isystem D:/openSSL/ucrt64/include
   OBJECT_DIR = CMakeFiles\gomoku_game.dir
   OBJECT_FILE_DIR = CMakeFiles\gomoku_game.dir\src\ui
 
+build CMakeFiles/gomoku_game.dir/src/ui/font_manager.cpp.obj: CXX_COMPILER__gomoku_game_unscanned_Debug D$:/Code/game/src/ui/font_manager.cpp || cmake_object_order_depends_target_gomoku_game
+  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DMY_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles\gomoku_game.dir\src\ui\font_manager.cpp.obj.d
+  FLAGS = -g -std=c++17 -finput-charset=UTF-8
+  INCLUDES = -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -ID:/Code/game/src/network -ID:/Code/game/src/util -ID:/Code/game/src/config -isystem D:/Qt/5.15.2/mingw81_64/include -isystem D:/Qt/5.15.2/mingw81_64/include/QtCore -isystem D:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++ -isystem D:/Qt/5.15.2/mingw81_64/include/QtGui -isystem D:/Qt/5.15.2/mingw81_64/include/QtANGLE -isystem D:/Qt/5.15.2/mingw81_64/include/QtWidgets -isystem D:/openSSL/ucrt64/include
+  OBJECT_DIR = CMakeFiles\gomoku_game.dir
+  OBJECT_FILE_DIR = CMakeFiles\gomoku_game.dir\src\ui
+
 build CMakeFiles/gomoku_game.dir/src/util/env_util.cpp.obj: CXX_COMPILER__gomoku_game_unscanned_Debug D$:/Code/game/src/util/env_util.cpp || cmake_object_order_depends_target_gomoku_game
-  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DMY_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles\gomoku_game.dir\src\util\env_util.cpp.obj.d
   FLAGS = -g -std=c++17 -finput-charset=UTF-8
   INCLUDES = -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -ID:/Code/game/src/network -ID:/Code/game/src/util -ID:/Code/game/src/config -isystem D:/Qt/5.15.2/mingw81_64/include -isystem D:/Qt/5.15.2/mingw81_64/include/QtCore -isystem D:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++ -isystem D:/Qt/5.15.2/mingw81_64/include/QtGui -isystem D:/Qt/5.15.2/mingw81_64/include/QtANGLE -isystem D:/Qt/5.15.2/mingw81_64/include/QtWidgets -isystem D:/openSSL/ucrt64/include
@@ -162,15 +170,23 @@ build CMakeFiles/gomoku_game.dir/src/util/env_util.cpp.obj: CXX_COMPILER__gomoku
   OBJECT_FILE_DIR = CMakeFiles\gomoku_game.dir\src\util
 
 build CMakeFiles/gomoku_game.dir/src/config/config.cpp.obj: CXX_COMPILER__gomoku_game_unscanned_Debug D$:/Code/game/src/config/config.cpp || cmake_object_order_depends_target_gomoku_game
-  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DMY_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles\gomoku_game.dir\src\config\config.cpp.obj.d
   FLAGS = -g -std=c++17 -finput-charset=UTF-8
   INCLUDES = -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -ID:/Code/game/src/network -ID:/Code/game/src/util -ID:/Code/game/src/config -isystem D:/Qt/5.15.2/mingw81_64/include -isystem D:/Qt/5.15.2/mingw81_64/include/QtCore -isystem D:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++ -isystem D:/Qt/5.15.2/mingw81_64/include/QtGui -isystem D:/Qt/5.15.2/mingw81_64/include/QtANGLE -isystem D:/Qt/5.15.2/mingw81_64/include/QtWidgets -isystem D:/openSSL/ucrt64/include
   OBJECT_DIR = CMakeFiles\gomoku_game.dir
   OBJECT_FILE_DIR = CMakeFiles\gomoku_game.dir\src\config
 
+build CMakeFiles/gomoku_game.dir/src/util/log.cpp.obj: CXX_COMPILER__gomoku_game_unscanned_Debug D$:/Code/game/src/util/log.cpp || cmake_object_order_depends_target_gomoku_game
+  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DMY_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles\gomoku_game.dir\src\util\log.cpp.obj.d
+  FLAGS = -g -std=c++17 -finput-charset=UTF-8
+  INCLUDES = -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -ID:/Code/game/src/network -ID:/Code/game/src/util -ID:/Code/game/src/config -isystem D:/Qt/5.15.2/mingw81_64/include -isystem D:/Qt/5.15.2/mingw81_64/include/QtCore -isystem D:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++ -isystem D:/Qt/5.15.2/mingw81_64/include/QtGui -isystem D:/Qt/5.15.2/mingw81_64/include/QtANGLE -isystem D:/Qt/5.15.2/mingw81_64/include/QtWidgets -isystem D:/openSSL/ucrt64/include
+  OBJECT_DIR = CMakeFiles\gomoku_game.dir
+  OBJECT_FILE_DIR = CMakeFiles\gomoku_game.dir\src\util
+
 build CMakeFiles/gomoku_game.dir/gomoku_game_autogen/3YJK5W5UP7/qrc_resources.cpp.obj: CXX_COMPILER__gomoku_game_unscanned_Debug D$:/Code/game/build/gomoku_game_autogen/3YJK5W5UP7/qrc_resources.cpp || cmake_object_order_depends_target_gomoku_game
-  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEFINES = -DCPPHTTPLIB_OPENSSL_SUPPORT -DMY_DEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles\gomoku_game.dir\gomoku_game_autogen\3YJK5W5UP7\qrc_resources.cpp.obj.d
   FLAGS = -g -std=c++17 -finput-charset=UTF-8
   INCLUDES = -ID:/Code/game/build/gomoku_game_autogen/include -ID:/Code/game/src/game -ID:/Code/game/src/ui -ID:/Code/game/src/network -ID:/Code/game/src/util -ID:/Code/game/src/config -isystem D:/Qt/5.15.2/mingw81_64/include -isystem D:/Qt/5.15.2/mingw81_64/include/QtCore -isystem D:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++ -isystem D:/Qt/5.15.2/mingw81_64/include/QtGui -isystem D:/Qt/5.15.2/mingw81_64/include/QtANGLE -isystem D:/Qt/5.15.2/mingw81_64/include/QtWidgets -isystem D:/openSSL/ucrt64/include
@@ -185,7 +201,7 @@ build CMakeFiles/gomoku_game.dir/gomoku_game_autogen/3YJK5W5UP7/qrc_resources.cp
 #############################################
 # Link the executable gomoku_game.exe
 
-build gomoku_game.exe: CXX_EXECUTABLE_LINKER__gomoku_game_Debug CMakeFiles/gomoku_game.dir/gomoku_game_autogen/mocs_compilation.cpp.obj CMakeFiles/gomoku_game.dir/src/main.cpp.obj CMakeFiles/gomoku_game.dir/src/game/gomoku_board.cpp.obj CMakeFiles/gomoku_game.dir/src/game/game.cpp.obj CMakeFiles/gomoku_game.dir/src/game/gomoku_game.cpp.obj CMakeFiles/gomoku_game.dir/src/game/player.cpp.obj CMakeFiles/gomoku_game.dir/src/game/gomoku_player.cpp.obj CMakeFiles/gomoku_game.dir/src/game/ai_player.cpp.obj CMakeFiles/gomoku_game.dir/src/game/ai_game.cpp.obj CMakeFiles/gomoku_game.dir/src/network/network_manager.cpp.obj CMakeFiles/gomoku_game.dir/src/ui/mainwindow.cpp.obj CMakeFiles/gomoku_game.dir/src/ui/gomoku_widget.cpp.obj CMakeFiles/gomoku_game.dir/src/ui/board_widget.cpp.obj CMakeFiles/gomoku_game.dir/src/util/env_util.cpp.obj CMakeFiles/gomoku_game.dir/src/config/config.cpp.obj CMakeFiles/gomoku_game.dir/gomoku_game_autogen/3YJK5W5UP7/qrc_resources.cpp.obj | D$:/Qt/5.15.2/mingw81_64/lib/libQt5Widgets.a D$:/openSSL/ucrt64/lib/libssl.dll.a D$:/openSSL/ucrt64/lib/libcrypto.dll.a D$:/Qt/5.15.2/mingw81_64/lib/libQt5Gui.a D$:/Qt/5.15.2/mingw81_64/lib/libQt5Core.a || gomoku_game_autogen gomoku_game_autogen_timestamp_deps
+build gomoku_game.exe: CXX_EXECUTABLE_LINKER__gomoku_game_Debug CMakeFiles/gomoku_game.dir/gomoku_game_autogen/mocs_compilation.cpp.obj CMakeFiles/gomoku_game.dir/src/main.cpp.obj CMakeFiles/gomoku_game.dir/src/game/gomoku_board.cpp.obj CMakeFiles/gomoku_game.dir/src/game/game.cpp.obj CMakeFiles/gomoku_game.dir/src/game/gomoku_game.cpp.obj CMakeFiles/gomoku_game.dir/src/game/player.cpp.obj CMakeFiles/gomoku_game.dir/src/game/gomoku_player.cpp.obj CMakeFiles/gomoku_game.dir/src/game/ai_player.cpp.obj CMakeFiles/gomoku_game.dir/src/game/ai_game.cpp.obj CMakeFiles/gomoku_game.dir/src/network/network_manager.cpp.obj CMakeFiles/gomoku_game.dir/src/ui/mainwindow.cpp.obj CMakeFiles/gomoku_game.dir/src/ui/gomoku_widget.cpp.obj CMakeFiles/gomoku_game.dir/src/ui/board_widget.cpp.obj CMakeFiles/gomoku_game.dir/src/ui/font_manager.cpp.obj CMakeFiles/gomoku_game.dir/src/util/env_util.cpp.obj CMakeFiles/gomoku_game.dir/src/config/config.cpp.obj CMakeFiles/gomoku_game.dir/src/util/log.cpp.obj CMakeFiles/gomoku_game.dir/gomoku_game_autogen/3YJK5W5UP7/qrc_resources.cpp.obj | D$:/Qt/5.15.2/mingw81_64/lib/libQt5Widgets.a D$:/openSSL/ucrt64/lib/libssl.dll.a D$:/openSSL/ucrt64/lib/libcrypto.dll.a D$:/Qt/5.15.2/mingw81_64/lib/libQt5Gui.a D$:/Qt/5.15.2/mingw81_64/lib/libQt5Core.a || gomoku_game_autogen gomoku_game_autogen_timestamp_deps
   FLAGS = -g
   LINK_LIBRARIES = D:/Qt/5.15.2/mingw81_64/lib/libQt5Widgets.a  -lws2_32  D:/openSSL/ucrt64/lib/libssl.dll.a  D:/openSSL/ucrt64/lib/libcrypto.dll.a  -lcrypt32  -lws2_32  D:/Qt/5.15.2/mingw81_64/lib/libQt5Gui.a  D:/Qt/5.15.2/mingw81_64/lib/libQt5Core.a  -lcrypt32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\gomoku_game.dir

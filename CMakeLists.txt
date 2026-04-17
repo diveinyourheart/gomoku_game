@@ -59,8 +59,10 @@ set(SOURCES
     src/ui/mainwindow.cpp
     src/ui/gomoku_widget.cpp
     src/ui/board_widget.cpp
+    src/ui/font_manager.cpp
     src/util/env_util.cpp
     src/config/config.cpp
+    src/util/log.cpp
 )
 
 # 头文件
@@ -77,6 +79,7 @@ set(HEADERS
     src/ui/mainwindow.h
     src/ui/gomoku_widget.h
     src/ui/board_widget.h
+    src/ui/font_manager.h
     src/ui/gomoku_constants.h
     src/network/nlohmann/json.hpp
     src/util/env_util.h
@@ -84,6 +87,10 @@ set(HEADERS
     src/network/cameron314/lightweightsemaphore.h
     src/network/cameron314/concurrentqueue.h
     src/network/cameron314/blockingconcurrentqueue.h
+    src/util/log.h
+    src/util/gomoku_console_log.h
+    src/util/gomoku_file_log.h
+    src/util/gomoku_qdebug_log.h
 )
 
 # UI 文件
@@ -116,4 +123,8 @@ endif()
 
 target_link_libraries(gomoku_game ws2_32)
 
-target_compile_definitions(gomoku_game PRIVATE CPPHTTPLIB_OPENSSL_SUPPORT)
+target_compile_definitions(gomoku_game
+    PRIVATE
+    CPPHTTPLIB_OPENSSL_SUPPORT
+    $<$<CONFIG:Debug>:MY_DEBUG>
+) 

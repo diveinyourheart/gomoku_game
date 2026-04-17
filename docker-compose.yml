@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  gomoku-game:
+    build: .
+    container_name: gomoku-game
+    environment:
+      - QT_QPA_PLATFORM=xcb
+    volumes:
+      - .:/app
+    # 如果你需要访问图形界面，需要添加以下配置
+    # 注意：在Docker中运行GUI应用需要特殊处理
+    # 对于Linux用户，可以使用以下配置
+    # devices:
+    #   - /dev/dri:/dev/dri
+    #   - /dev/snd:/dev/snd
+    # volumes:
+    #   - /tmp/.X11-unix:/tmp/.X11-unix
+    # environment:
+    #   - DISPLAY=$DISPLAY

@@ -24,6 +24,7 @@ public:
     int getHumanPlayerIndex() const;
     int getAiPlayerIndex() const;
     bool canPlayerMove() const override;
+    TurnFeature getCurrentTurnFeature() const override;
     
     // 处理AI决策结果
     void handleAIDecision(const std::vector<std::pair<std::pair<int, int>, int>>& scores);

@@ -1,5 +1,6 @@
 D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_mainwindow.cpp: D:/Code/game/src/ui/mainwindow.h \
   D:/Code/game/build/gomoku_game_autogen/moc_predefs.h \
+  D:/Code/game/src/ui/font_manager.h \
   D:/Code/game/src/ui/gomoku_constants.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qalgorithms.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qarraydata.h \
@@ -57,6 +58,7 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_mainwindow.cpp: D:/Code/ga
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qvarlengtharray.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qvector.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qversiontagging.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtGui/QFont \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qbrush.h \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qcolor.h \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qcursor.h \
@@ -81,7 +83,10 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_mainwindow.cpp: D:/Code/ga
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qwindowdefs.h \
   D:/Qt/5.15.2/mingw81_64/include/QtGui/qwindowdefs_win.h \
   D:/Qt/5.15.2/mingw81_64/include/QtWidgets/QMainWindow \
+  D:/Qt/5.15.2/mingw81_64/include/QtWidgets/QMessageBox \
+  D:/Qt/5.15.2/mingw81_64/include/QtWidgets/qdialog.h \
   D:/Qt/5.15.2/mingw81_64/include/QtWidgets/qmainwindow.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtWidgets/qmessagebox.h \
   D:/Qt/5.15.2/mingw81_64/include/QtWidgets/qsizepolicy.h \
   D:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtabwidget.h \
   D:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtwidgets-config.h \

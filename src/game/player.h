@@ -8,6 +8,7 @@ struct PlayerMove {
     int y;
     PlayerMove(int x, int y) : x(x), y(y) {}
     PlayerMove() : x(-1), y(-1) {}
+    bool operator==(const PlayerMove& other) const;
 };
 
 class Player
@@ -21,11 +22,16 @@ public:
 
     int getType() const;
     int getColor() const;
-    virtual void addMove(int x, int y);
+    void addMove(int x, int y);
+    PlayerMove undoMove();
+    bool hasMoves() const;
+    const std::stack<PlayerMove>& getMoveHistory() const;
+    PlayerMove getLastMove() const;
 
-private:
+protected:
     int type;
     int color;
+    std::stack<PlayerMove> moveHistory;
 };
 
 #endif // PLAYER_H

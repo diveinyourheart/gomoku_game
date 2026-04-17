@@ -1,17 +1,19 @@
 #include "network_manager.h"
-#include "httplib.h"
-#include <iostream>
-#include <string>
-#include <sstream>
-#include "player.h"
-#include <nlohmann/json.hpp> 
-#include <gomoku_board.h>
-#include "network_event.h"
-#include <ai_game.h>
-#ifdef QT_CORE_LIB
-#include <QDebug>
-#include <QString>
-#endif
+
+void jsonDataLogger(const char* key, const std::string& data){
+    try {
+        auto json_data = nlohmann::json::parse(data).dump(4);
+        LOG_INFO(key,"\n",json_data);
+    } catch (const nlohmann::json::parse_error& e) {
+        LOG_ERROR("Error parsing JSON: ", e.what());
+    } catch (const nlohmann::json::type_error& e) {
+        LOG_ERROR("Type error: ", e.what());
+    } catch (const nlohmann::json::exception& e) {
+        LOG_ERROR("JSON exception: ", e.what());
+    } catch (...) {
+        LOG_ERROR("Unknown error");
+    }
+}
 
 // 使用cpp-httplib库实现HTTP客户端
 std::string HttpClient::post(const std::string& url, const std::string& data, const std::string& api_key) {
@@ -26,15 +28,14 @@ std::string HttpClient::post(const std::string& url, const std::string& data, co
     std::string host = host_and_path.substr(0, pos);
     std::string path = host_and_path.substr(pos);
     
-    std::cout << "host: " << host << std::endl;
-    std::cout << "path: " << path << std::endl;
-    std::cout << "data: " << std::endl;
-    std::cout << data << std::endl;
+    LOG_INFO("host: ",host);
+    LOG_INFO("path: ",path);
+    jsonDataLogger("data: ",data);
     
     // 创建客户端
     httplib::SSLClient client(host.c_str());
-    // client.set_ca_cert_path("./cacert.pem");
-    client.enable_server_certificate_verification(false);
+    client.enable_server_certificate_verification(true);
+    client.set_ca_cert_path("../resources/cacert.pem");
     client.set_connection_timeout(30, 0); // 设置连接超时为30秒
     
     // 设置请求头
@@ -46,31 +47,20 @@ std::string HttpClient::post(const std::string& url, const std::string& data, co
     // 发送请求
     auto res = client.Post(path.c_str(), headers, data, "application/json");
 
-    if (!res) {
-        std::cerr << "SSLClient.Post方法的返回值为空" << std::endl;
-        return "";
-    }else{
-        std::cout << "response: " << std::endl;
-        std::cout << "status: " << res->status << std::endl;
-        std::cout << "body: " << res->body << std::endl;
-    }
-
-    #ifdef QT_CORE_LIB
     if (res) {
-        qDebug() << "[HTTP Response] Status:" << res->status;
-        qDebug() << "[HTTP Response] Body:" << QString::fromStdString(res->body);
+        LOG_INFO("[HTTP Response] Status: ",res->status);
+        jsonDataLogger("[HTTP Response] Body:", res->body);
     } else {
-        qDebug() << "[HTTP Response] Error: Response is null (Connection failed)";
+        LOG_ERROR("[HTTP Response] Error: Response is null (Connection failed)");
     }
-    #endif
 
     if (res && res->status == 200) {
         return res->body;
     } else {
         if (res) {
-            std::cerr << "HTTP请求失败: " << res->status << std::endl;
+            LOG_ERROR("[HTTP Response] Error: ",res->body);
         } else {
-            std::cerr << "HTTP请求失败: 连接错误" << std::endl;
+            LOG_ERROR("[HTTP Response] Error: Connection failed");
         }
         return "";
     }
@@ -106,21 +96,21 @@ void NetworkManager::processRequest(const NetworkRequest& request) {
     
     if (request.type == RequestType::GET_BEST_MOVE) {
         PlayerMove move = parseResponse(response);
-        // 创建网络响应事件
-        NetworkResponseEvent* event = new NetworkResponseEvent(NetworkResponseEvent::ResponseType::GET_BEST_MOVE, move);
+        // 创建网络响应事件，传入回合特征
+        NetworkResponseEvent* event = new NetworkResponseEvent(NetworkResponseEvent::ResponseType::GET_BEST_MOVE, move, request.turnFeature);
         // 发送事件到Qt事件循环
         QCoreApplication::postEvent(request.game, event);
     } else if (request.type == RequestType::GET_MOVE_SCORES) {
         std::vector<std::pair<std::pair<int, int>, int>> scores = parseScoreResponse(response);
-        // 创建网络响应事件
-        NetworkResponseEvent* event = new NetworkResponseEvent(NetworkResponseEvent::ResponseType::GET_MOVE_SCORES, scores);
+        // 创建网络响应事件，传入回合特征
+        NetworkResponseEvent* event = new NetworkResponseEvent(NetworkResponseEvent::ResponseType::GET_MOVE_SCORES, scores, request.turnFeature);
         // 发送事件到Qt事件循环
         QCoreApplication::postEvent(request.game, event);
     }
 }
 
-void NetworkManager::asyncGetMoveScores(const GomokuBoard* board, int currentPlayer, const std::vector<std::pair<std::pair<int, int>, int>>& candidatesWithScores, int topK, AIGame* game) {
-    std::string board_str = boardToString(board);
+void NetworkManager::asyncGetMoveScores(const GomokuBoard* board, int currentPlayer, const std::vector<std::pair<std::pair<int, int>, int>>& candidatesWithScores, int topK, AIGame* game, const Game::TurnFeature& turnFeature) {
+    std::string board_str = board->boardToString();
     std::string player_str = (currentPlayer == GomokuBoard::BLACK) ? "X" : "O";
     
     // 构建候选点JSON串（包含评估分数）
@@ -183,28 +173,10 @@ void NetworkManager::asyncGetMoveScores(const GomokuBoard* board, int currentPla
     request.game = game;
     request.candidatesWithScores = candidatesWithScores;
     request.topK = topK;
+    request.turnFeature = turnFeature; // 设置回合特征
     
     // 将请求加入队列
     requestQueue.enqueue(request);
-}
-
-std::string NetworkManager::boardToString(const GomokuBoard* board) {
-    std::stringstream ss;
-    for (int y = 0; y < GomokuBoard::BOARD_SIZE; ++y) {
-        for (int x = 0; x < GomokuBoard::BOARD_SIZE; ++x) {
-            int stone = board->getStone(x, y);
-            switch (stone) {
-                case GomokuBoard::EMPTY: ss << ".";
-                    break;
-                case GomokuBoard::BLACK: ss << "X";
-                    break;
-                case GomokuBoard::WHITE: ss << "O";
-                    break;
-            }
-        }
-        ss << "\n";
-    }
-    return ss.str();
 }
 
 std::string NetworkManager::sendRequest(const std::string& system_content, const std::string& user_content) {
@@ -285,7 +257,7 @@ PlayerMove NetworkManager::parseResponse(const std::string& response) {
             }
         }
     } catch (const std::exception& e) {
-        std::cerr << "JSON 解析失败: " << e.what() << std::endl;
+        LOG_ERROR("JSON parse error: ",e.what());
     }
     
     // 解析失败时的降级策略
@@ -293,7 +265,7 @@ PlayerMove NetworkManager::parseResponse(const std::string& response) {
 }
 
 PlayerMove NetworkManager::getBestMove(const GomokuBoard* board, int currentPlayer) {
-    std::string board_str = boardToString(board);
+    std::string board_str = board->boardToString();
     std::string player_str = (currentPlayer == GomokuBoard::BLACK) ? "X" : "O";
     
     // 1. 系统指令：建立严格规则
@@ -316,7 +288,7 @@ PlayerMove NetworkManager::getBestMove(const GomokuBoard* board, int currentPlay
 }
 
 std::vector<std::pair<std::pair<int, int>, int>> NetworkManager::getMoveScores(const GomokuBoard* board, int currentPlayer, const std::vector<std::pair<std::pair<int, int>, int>>& candidatesWithScores, int topK) {
-    std::string board_str = boardToString(board);
+    std::string board_str = board->boardToString();
     std::string player_str = (currentPlayer == GomokuBoard::BLACK) ? "X" : "O";
     
     // 构建候选点JSON串（包含评估分数）
@@ -390,7 +362,7 @@ std::vector<std::pair<std::pair<int, int>, int>> NetworkManager::parseScoreRespo
             scores.push_back(std::make_pair(std::make_pair(x, y), score));
         }
     } catch (const std::exception& e) {
-        std::cerr << "JSON 解析失败: " << e.what() << std::endl;
+        LOG_ERROR("JSON parse error: ",e.what());
     }
     
     return scores;

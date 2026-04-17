@@ -1,6 +1,4 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -8,6 +6,14 @@ MainWindow::MainWindow(QWidget *parent) :
     currentGameMode(GomokuConst::GameMode::None) // 初始化默认游戏模式为None
 {
     ui->setupUi(this);
+
+    // 设置字体
+    ui->label_title->setFont(FontManager::getFont(FontManager::Title));
+    ui->btn_normalMode->setFont(FontManager::getFont(FontManager::Button));
+    ui->btn_aiMode->setFont(FontManager::getFont(FontManager::Button));
+    ui->btn_Undo->setFont(FontManager::getFont(FontManager::Button));
+    ui->menu_Game->setFont(FontManager::getFont(FontManager::Body));
+    ui->menu_Help->setFont(FontManager::getFont(FontManager::Body));
 
     // 手动连接信号与槽
     connect(ui->action_New_Game, &QAction::triggered, this, &MainWindow::onNewGame);
@@ -17,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->btn_aiMode, &QPushButton::clicked, this, &MainWindow::onBtnAiModeClicked);
     connect(ui->action_Back_to_Menu, &QAction::triggered, this, &MainWindow::onActionBackToMenuTriggered);
     connect(ui->btn_Undo, &QPushButton::clicked, ui->gomokuWidget, &GomokuWidget::onUndoButtonClicked);
+    connect(ui->gomokuWidget, &GomokuWidget::undoButtonStateChanged, this, &MainWindow::onUndoButtonStateChanged);
 }
 
 MainWindow::~MainWindow()
@@ -61,4 +68,10 @@ void MainWindow::onActionBackToMenuTriggered()
     ui->stackedWidget->setCurrentIndex(0);
     // 重置游戏模式为None
     currentGameMode = GomokuConst::GameMode::None;
+}
+
+void MainWindow::onUndoButtonStateChanged(bool enabled)
+{
+    // 更新悔棋按钮的状态
+    ui->btn_Undo->setEnabled(enabled);
 }

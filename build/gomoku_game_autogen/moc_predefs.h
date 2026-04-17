@@ -292,6 +292,7 @@
 #define __FLT_HAS_INFINITY__ 1
 #define __GNUC_EXECUTION_CHARSET_NAME "UTF-8"
 #define __cpp_unicode_literals 200710L
+#define MY_DEBUG 1
 #define __UINT_FAST16_TYPE__ short unsigned int
 #define __DEC64_MAX__ 9.999999999999999E384DD
 #define __STDC_EMBED_NOT_FOUND__ 0

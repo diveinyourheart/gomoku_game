@@ -6,12 +6,18 @@
 #include <utility>
 #include <thread>
 #include <functional>
-#include "player.h"
 #include <QCoreApplication>
+#include "player.h"
 #include "cameron314/blockingconcurrentqueue.h"
-
-class GomokuBoard;
-class AIGame;
+#include "ai_game.h"
+#include "game.h"
+#include "gomoku_board.h"
+#include "httplib.h"
+#include <iostream>
+#include <sstream>
+#include <nlohmann/json.hpp> 
+#include "network_event.h"
+#include "gomoku_qdebug_log.h"
 
 // 请求类型
 enum class RequestType {
@@ -29,6 +35,8 @@ struct NetworkRequest {
     // 用于GET_MOVE_SCORES
     std::vector<std::pair<std::pair<int, int>, int>> candidatesWithScores;
     int topK;
+    // 回合特征，用于线程间透传和验证
+    Game::TurnFeature turnFeature;
 };
 
 class HttpClient {
@@ -48,7 +56,7 @@ public:
     std::vector<std::pair<std::pair<int, int>, int>> getMoveScores(const GomokuBoard* board, int currentPlayer, const std::vector<std::pair<std::pair<int, int>, int>>& candidatesWithScores, int topK);
     
     // 异步发送请求
-    void asyncGetMoveScores(const GomokuBoard* board, int currentPlayer, const std::vector<std::pair<std::pair<int, int>, int>>& candidatesWithScores, int topK, AIGame* game);
+    void asyncGetMoveScores(const GomokuBoard* board, int currentPlayer, const std::vector<std::pair<std::pair<int, int>, int>>& candidatesWithScores, int topK, AIGame* game, const AIGame::TurnFeature& turnFeature);
 
 private:
     std::string api_key;
@@ -58,7 +66,6 @@ private:
     bool running;
     
     // 辅助方法
-    std::string boardToString(const GomokuBoard* board);
     std::string sendRequest(const std::string& system_content, const std::string& user_content);
     PlayerMove parseResponse(const std::string& response);
     std::vector<std::pair<std::pair<int, int>, int>> parseScoreResponse(const std::string& response);
