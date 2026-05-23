@@ -18,6 +18,7 @@ protected:
 
 private:
     std::shared_ptr<Game> game;
+    QPixmap  background;
 
     void drawBoard(QPainter& painter);
     void drawStones(QPainter& painter);

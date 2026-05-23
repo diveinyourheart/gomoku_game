@@ -15,8 +15,8 @@
 #include <QVBoxLayout>
 #include "board_widget.h"
 #include "font_manager.h"
-#include <QDebug>
 #include "gomoku_constants.h"
+#include "gomoku_qdebug_log.h"
 using namespace GomokuConst;
 
 class GomokuWidget : public QWidget

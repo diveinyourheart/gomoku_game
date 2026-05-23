@@ -2,35 +2,27 @@
 
 GomokuWidget::GomokuWidget(QWidget *parent) : QWidget(parent)
 {
-    // 棋盘宽度
     int boardWidth = MARGIN * 2 + CELL_SIZE * (BOARD_SIZE - 1);
 
-    // 创建状态标签
     statusLabel = new QLabel("游戏未开始", this);
-    statusLabel->setFixedWidth(boardWidth);
     statusLabel->setAlignment(Qt::AlignCenter);
     statusLabel->setFont(FontManager::getFont(FontManager::StatusBar));
+    // 允许 Label 根据文本自动调整高度，只固定宽度
+    statusLabel->setFixedWidth(boardWidth); 
 
-    // 创建棋盘小部件（暂时传入nullptr，后续在startNewGame中设置）
     boardWidget = new BoardWidget(nullptr, this);
+    // 棋盘必须是固定的
+    boardWidget->setFixedSize(boardWidth, boardWidth);
 
-    // 创建垂直布局
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(statusLabel);
     layout->addWidget(boardWidget);
-    layout->setContentsMargins(0, 10, 0, 10);
-
-    statusLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-
     
-    boardWidget->setFixedSize(boardWidth, boardWidth);
+    // 关键：设置布局大小约束，让 GomokuWidget 刚好包裹住内部组件
+    layout->setSizeConstraint(QLayout::SetFixedSize); 
+    layout->setContentsMargins(0, 10, 0, 10);
+    layout->setSpacing(10);
 
-    int labelHeight = statusLabel->sizeHint().height();
-    int totalHeight = labelHeight + boardWidth + layout->spacing() + 20;
-
-    setFixedSize(boardWidth, totalHeight);
-
-    // 初始更新状态
     updateStatus();
 }
 
@@ -96,13 +88,13 @@ void GomokuWidget::startNewGame(GomokuConst::GameMode mode)
     switch (mode) {
     case GomokuConst::GameMode::Normal:
         // 普通对战模式
-        qDebug() << "普通对战模式";
+        LOG_INFO("普通对战模式");
         game = std::make_shared<GomokuGame>();
         break;
     case GomokuConst::GameMode::AI:
         {
             // AI对战模式
-            qDebug() << "AI对战模式";
+            LOG_INFO("AI对战模式");
             // 弹出选择颜色的对话框
             QMessageBox msgBox;
             msgBox.setWindowTitle("选择先后手");
@@ -129,7 +121,7 @@ void GomokuWidget::startNewGame(GomokuConst::GameMode mode)
             break;
         }
     default:
-        qDebug() << "未知游戏模式";
+        LOG_ERROR("未知游戏模式");
         game = std::make_shared<GomokuGame>();
         break;
     }

@@ -7,6 +7,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // 关键：告诉 MainWindow 的布局，根据内部组件的大小来固定窗口大小
+    // 这会自动计算：菜单栏高度 + QStackedWidget(GomokuWidget)高度 + 布局边距
+    this->layout()->setSizeConstraint(QLayout::SetFixedSize);
+
+    // 禁用最大化按钮，因为窗口已经不能缩放了，留着最大化按钮会很奇怪
+    this->setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
+
     // 设置字体
     ui->label_title->setFont(FontManager::getFont(FontManager::Title));
     ui->btn_normalMode->setFont(FontManager::getFont(FontManager::Button));

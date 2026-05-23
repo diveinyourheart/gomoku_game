@@ -262,7 +262,7 @@ build gomoku_game_autogen/timestamp gomoku_game_autogen/mocs_compilation.cpp | $
 #############################################
 # Custom command for gomoku_game_autogen\3YJK5W5UP7\qrc_resources.cpp
 
-build gomoku_game_autogen/3YJK5W5UP7/qrc_resources.cpp | ${cmake_ninja_workdir}gomoku_game_autogen/3YJK5W5UP7/qrc_resources.cpp: CUSTOM_COMMAND D$:/Code/game/resources/resources.qrc CMakeFiles/gomoku_game_autogen.dir/AutoRcc_resources_3YJK5W5UP7_Info.json D$:/Code/game/resources/icons/app_icon.svg D$:/Qt/5.15.2/mingw81_64/bin/rcc.exe D$:/Qt/5.15.2/mingw81_64/bin/rcc.exe || gomoku_game_autogen gomoku_game_autogen_timestamp_deps
+build gomoku_game_autogen/3YJK5W5UP7/qrc_resources.cpp | ${cmake_ninja_workdir}gomoku_game_autogen/3YJK5W5UP7/qrc_resources.cpp: CUSTOM_COMMAND D$:/Code/game/resources/resources.qrc CMakeFiles/gomoku_game_autogen.dir/AutoRcc_resources_3YJK5W5UP7_Info.json D$:/Code/game/resources/images/bg.png D$:/Code/game/resources/icons/app_icon.svg D$:/Qt/5.15.2/mingw81_64/bin/rcc.exe D$:/Qt/5.15.2/mingw81_64/bin/rcc.exe || gomoku_game_autogen gomoku_game_autogen_timestamp_deps
   COMMAND = C:\windows\system32\cmd.exe /C "cd /D D:\Code\game\build && D:\CMAKE\bin\cmake.exe -E cmake_autorcc D:/Code/game/build/CMakeFiles/gomoku_game_autogen.dir/AutoRcc_resources_3YJK5W5UP7_Info.json Debug"
   DESC = Automatic RCC for resources/resources.qrc
   restat = 1

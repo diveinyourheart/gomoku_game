@@ -876,12 +876,11 @@ D:/Code/game/src/game/player.h
 D:/Code/game/src/network/cameron314/blockingconcurrentqueue.h
 D:/Code/game/src/network/cameron314/concurrentqueue.h
 D:/Code/game/src/network/httplib.h
-D:/Code/game/src/ui/mainwindow.cpp
-D:/Code/game/src/ui/font_manager.cpp
 D:/Code/game/src/network/network_manager.h
-D:/Code/game/src/game/gomoku_board.cpp
+D:/Code/game/src/ui/font_manager.cpp
+D:/Code/game/src/ui/mainwindow.cpp
 D:/Code/game/src/network/nlohmann/json.hpp
-D:/Code/game/src/game/gomoku_player.cpp
+D:/Code/game/src/game/gomoku_board.cpp
 D:/Code/game/src/ui/board_widget.h
  mmc:Q_OBJECT
  mdp:D:/Code/game/build/gomoku_game_autogen/moc_predefs.h
@@ -1176,7 +1175,8 @@ D:/Code/game/src/ui/board_widget.h
  mdp:D:/mingw64/x86_64-w64-mingw32/include/vadefs.h
  mdp:D:/mingw64/x86_64-w64-mingw32/include/wchar.h
  mdp:D:/mingw64/x86_64-w64-mingw32/include/wctype.h
-D:/Code/game/src/game/ai_player.cpp
+D:/Code/game/src/game/gomoku_player.cpp
+D:/Code/game/src/ui/font_manager.h
 D:/Code/game/src/ui/mainwindow.h
  mmc:Q_OBJECT
  mdp:D:/Code/game/build/gomoku_game_autogen/moc_predefs.h
@@ -1481,7 +1481,7 @@ D:/Code/game/src/ui/mainwindow.h
  mdp:D:/mingw64/x86_64-w64-mingw32/include/wchar.h
  mdp:D:/mingw64/x86_64-w64-mingw32/include/wctype.h
  uic:ui_mainwindow.h
-D:/Code/game/src/ui/font_manager.h
+D:/Code/game/src/game/ai_player.cpp
 D:/Code/game/src/ui/gomoku_widget.h
  mmc:Q_OBJECT
  mdp:D:/Code/game/build/gomoku_game_autogen/moc_predefs.h
@@ -1496,9 +1496,12 @@ D:/Code/game/src/ui/gomoku_widget.h
  mdp:D:/Code/game/src/ui/font_manager.h
  mdp:D:/Code/game/src/ui/gomoku_constants.h
  mdp:D:/Code/game/src/ui/gomoku_widget.h
+ mdp:D:/Code/game/src/util/gomoku_qdebug_log.h
+ mdp:D:/Code/game/src/util/log.h
  mdp:D:/Qt/5.15.2/mingw81_64/include/QtCore/QDebug
  mdp:D:/Qt/5.15.2/mingw81_64/include/QtCore/QObject
  mdp:D:/Qt/5.15.2/mingw81_64/include/QtCore/QString
+ mdp:D:/Qt/5.15.2/mingw81_64/include/QtCore/QTextCodec
  mdp:D:/Qt/5.15.2/mingw81_64/include/QtCore/qalgorithms.h
  mdp:D:/Qt/5.15.2/mingw81_64/include/QtCore/qarraydata.h
  mdp:D:/Qt/5.15.2/mingw81_64/include/QtCore/qatomic.h
@@ -1559,6 +1562,7 @@ D:/Code/game/src/ui/gomoku_widget.h
  mdp:D:/Qt/5.15.2/mingw81_64/include/QtCore/qsysinfo.h
  mdp:D:/Qt/5.15.2/mingw81_64/include/QtCore/qsystemdetection.h
  mdp:D:/Qt/5.15.2/mingw81_64/include/QtCore/qtcore-config.h
+ mdp:D:/Qt/5.15.2/mingw81_64/include/QtCore/qtextcodec.h
  mdp:D:/Qt/5.15.2/mingw81_64/include/QtCore/qtextstream.h
  mdp:D:/Qt/5.15.2/mingw81_64/include/QtCore/qtypeinfo.h
  mdp:D:/Qt/5.15.2/mingw81_64/include/QtCore/qurl.h
@@ -1634,6 +1638,7 @@ D:/Code/game/src/ui/gomoku_widget.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/c++0x_warning.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/char_traits.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/charconv.h
+ mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/codecvt.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/concept_check.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/cpp_type_traits.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/cxxabi_forced.h
@@ -1654,8 +1659,11 @@ D:/Code/game/src/ui/gomoku_widget.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/list.tcc
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/locale_classes.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/locale_classes.tcc
+ mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/locale_conv.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/locale_facets.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/locale_facets.tcc
+ mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/locale_facets_nonio.h
+ mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/locale_facets_nonio.tcc
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/localefwd.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/max_size_type.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/memory_resource.h
@@ -1674,6 +1682,7 @@ D:/Code/game/src/ui/gomoku_widget.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/postypes.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/predefined_ops.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/ptr_traits.h
+ mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/quoted_string.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/range_access.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/ranges_algo.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/ranges_algobase.h
@@ -1728,12 +1737,14 @@ D:/Code/game/src/ui/gomoku_widget.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/cctype
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/cerrno
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/charconv
+ mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/chrono
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/clocale
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/compare
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/concepts
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/cstddef
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/cstdint
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/cstdlib
+ mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/ctime
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/cwchar
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/cwctype
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/debug/assertions.h
@@ -1750,12 +1761,14 @@ D:/Code/game/src/ui/gomoku_widget.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/format
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/functional
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/initializer_list
+ mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/iomanip
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/ios
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/iosfwd
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/istream
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/iterator
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/limits
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/list
+ mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/locale
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/map
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/memory
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/new
@@ -1791,7 +1804,9 @@ D:/Code/game/src/ui/gomoku_widget.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/x86_64-w64-mingw32/bits/error_constants.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/x86_64-w64-mingw32/bits/gthr-default.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/x86_64-w64-mingw32/bits/gthr.h
+ mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/x86_64-w64-mingw32/bits/messages_members.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h
+ mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/x86_64-w64-mingw32/bits/time_members.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/limits.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/stdarg.h
  mdp:D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/stddef.h
@@ -1836,10 +1851,10 @@ D:/Code/game/src/ui/gomoku_widget.h
  mdp:D:/mingw64/x86_64-w64-mingw32/include/wctype.h
 D:/Code/game/src/util/env_util.h
 D:/Code/game/src/util/gomoku_console_log.h
-D:/Code/game/src/util/gomoku_qdebug_log.h
 D:/Code/game/src/util/gomoku_file_log.h
-D:/Code/game/src/util/log.cpp
+D:/Code/game/src/util/gomoku_qdebug_log.h
 D:/Code/game/src/config/config.cpp
+D:/Code/game/src/util/log.cpp
 D:/Code/game/src/game/ai_game.cpp
 D:/Code/game/src/game/game.cpp
 D:/Code/game/src/game/gomoku_game.cpp

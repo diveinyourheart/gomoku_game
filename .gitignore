@@ -1,0 +1,36 @@
+# 环境变量文件
+.env
+
+# CMake构建目录
+build/
+*.cmake
+CMakeCache.txt
+Makefile
+
+# Qt构建文件
+*.pro.user
+*.qmake.stash
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+
+# 编译输出
+*.o
+*.obj
+*.dll
+*.lib
+*.a
+*.so
+*.exe
+
+# 日志文件
+*.log
+
+# 临时文件
+*.tmp
+*.temp
+
+# 操作系统文件
+.DS_Store
+Thumbs.db

@@ -11,9 +11,12 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code
   D:/Code/game/src/ui/font_manager.h \
   D:/Code/game/src/ui/gomoku_constants.h \
   D:/Code/game/src/ui/gomoku_widget.h \
+  D:/Code/game/src/util/gomoku_qdebug_log.h \
+  D:/Code/game/src/util/log.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/QDebug \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/QObject \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/QString \
+  D:/Qt/5.15.2/mingw81_64/include/QtCore/QTextCodec \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qalgorithms.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qarraydata.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qatomic.h \
@@ -74,6 +77,7 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qsysinfo.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qsystemdetection.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qtcore-config.h \
+  D:/Qt/5.15.2/mingw81_64/include/QtCore/qtextcodec.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qtextstream.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qtypeinfo.h \
   D:/Qt/5.15.2/mingw81_64/include/QtCore/qurl.h \
@@ -149,6 +153,7 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/c++0x_warning.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/char_traits.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/charconv.h \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/codecvt.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/concept_check.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/cpp_type_traits.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/cxxabi_forced.h \
@@ -169,8 +174,11 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/list.tcc \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/locale_classes.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/locale_classes.tcc \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/locale_conv.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/locale_facets.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/locale_facets.tcc \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/locale_facets_nonio.h \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/locale_facets_nonio.tcc \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/localefwd.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/max_size_type.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/memory_resource.h \
@@ -189,6 +197,7 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/postypes.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/predefined_ops.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/ptr_traits.h \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/quoted_string.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/range_access.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/ranges_algo.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/bits/ranges_algobase.h \
@@ -243,12 +252,14 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/cctype \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/cerrno \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/charconv \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/chrono \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/clocale \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/compare \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/concepts \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/cstddef \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/cstdint \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/cstdlib \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/ctime \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/cwchar \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/cwctype \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/debug/assertions.h \
@@ -265,12 +276,14 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/format \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/functional \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/initializer_list \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/iomanip \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/ios \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/iosfwd \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/istream \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/iterator \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/limits \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/list \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/locale \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/map \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/memory \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/new \
@@ -306,7 +319,9 @@ D:/Code/game/build/gomoku_game_autogen/YPKJ5OE7LN/moc_gomoku_widget.cpp: D:/Code
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/x86_64-w64-mingw32/bits/error_constants.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/x86_64-w64-mingw32/bits/gthr-default.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/x86_64-w64-mingw32/bits/gthr.h \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/x86_64-w64-mingw32/bits/messages_members.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
+  D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/c++/x86_64-w64-mingw32/bits/time_members.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/limits.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/stdarg.h \
   D:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/stddef.h \

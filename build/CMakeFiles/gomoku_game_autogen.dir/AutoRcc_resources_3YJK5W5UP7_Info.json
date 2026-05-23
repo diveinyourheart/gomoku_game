@@ -7,7 +7,11 @@
 	"CROSS_CONFIG" : false,
 	"GENERATOR" : "Ninja",
 	"INCLUDE_DIR" : "D:/Code/game/build/gomoku_game_autogen/include",
-	"INPUTS" : [ "D:/Code/game/resources/icons/app_icon.svg" ],
+	"INPUTS" : 
+	[
+		"D:/Code/game/resources/images/bg.png",
+		"D:/Code/game/resources/icons/app_icon.svg"
+	],
 	"LOCK_FILE" : "D:/Code/game/build/CMakeFiles/gomoku_game_autogen.dir/AutoRcc_resources_3YJK5W5UP7_Lock.lock",
 	"MULTI_CONFIG" : false,
 	"OPTIONS" : [ "-name", "resources" ],

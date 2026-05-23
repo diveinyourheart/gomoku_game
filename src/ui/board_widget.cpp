@@ -12,6 +12,7 @@ using namespace GomokuConst;
 
 BoardWidget::BoardWidget(std::shared_ptr<Game> game, QWidget* parent)
     : QWidget(parent), game(game){
+        background.load(":/images/bg.png");
         if (game) {
             game->startNewGame();
             connect(game.get(), &Game::moveMade, this, &BoardWidget::onMoveMade);
@@ -53,6 +54,26 @@ void BoardWidget::mousePressEvent(QMouseEvent* event)
 }
 
 void BoardWidget::drawBoard(QPainter& painter){
+
+    // 1. 绘制背景 (增加空检查)
+    if (!background.isNull()) {
+        // 使用 SmoothTransformation 缩放可以让木纹边缘更柔和，不闪烁
+        painter.drawPixmap(this->rect(), background);
+
+        // --- 增加光泽感的代码段 ---
+        painter.save(); // 保存当前画笔状态
+        // 使用“柔光”或“叠加”模式
+        painter.setCompositionMode(QPainter::CompositionMode_SoftLight);
+        // 覆盖一层淡金黄或浅白色，透明度设置在 50-100 之间
+        painter.fillRect(this->rect(), QColor(255, 255, 200, 80)); 
+        painter.restore(); // 恢复状态，避免影响后续棋盘线绘制
+        // -----------------------
+    } else {
+        // 万一图片加载失败，给个保底色，防止白屏
+        LOG_ERROR("Failed to load background image");
+        painter.fillRect(this->rect(), QColor(222, 184, 135)); 
+    }
+
     painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(QPen(Qt::black, 1));
 
